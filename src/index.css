@@ -9,6 +9,8 @@
   margin: 0;
   font-family: 'Quicksand';
 }
+
+/* Navbar */
 .navbar {
   color: #fff;
   background-color: var(--primary-color);
@@ -35,4 +37,18 @@
   max-width: 600px;
   margin: 40px auto;
   padding: 20px;
+}
+
+/* Product preview */
+.product-preview {
+  margin: 20px 0;
+  list-style: none;
+}
+.product-preview:hover {
+  color: var(--secondary-color);
+  cursor: pointer;
+}
+.product-preview h4 {
+  font-size: 20px;
+  margin-bottom: 8px;
 }
