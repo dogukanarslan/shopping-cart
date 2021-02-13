@@ -1,25 +1,18 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ProductList from './ProductList';
 
 const Home = () => {
-  const [products, setProducts] = useState([
-    {
-      id: 1,
-      name: 'Coffee',
-      price: 10,
-      quantity: 5,
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque tincidunt neque sed magna egestas, eget volutpat felis ullamcorper. Vestibulum sagittis.'
-    },
-    {
-      id: 2,
-      name: 'Water',
-      price: 1,
-      quantity: 20,
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tristique, diam vel luctus accumsan, lacus lorem ornare libero, sed ultrices.'
-    }
-  ]);
+  const [products, setProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState([true])
+
+  useEffect(() => {
+    fetch('http://localhost:8000/products')
+      .then((res) => res.json())
+      .then((data) => {
+        setProducts(data);
+        setIsLoading(false);
+      });
+  }, []);
 
   const addToCart = (id) => {
     const newProducts = products.map((product) => {
@@ -38,6 +31,7 @@ const Home = () => {
   return (
     <div className="home">
       <h2>Homepage</h2>
+      {isLoading && <div>Loading...</div>}
       <ul>
         <ProductList products={products} addToCart={addToCart} />
       </ul>

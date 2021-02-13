@@ -1,0 +1,18 @@
+{
+  "products": [
+    {
+      "id": 1,
+      "name": "Coffee",
+      "price": 10,
+      "quantity": 5,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque tincidunt neque sed magna egestas, eget volutpat felis ullamcorper. Vestibulum sagittis."
+    },
+    {
+      "id": 2,
+      "name": "Water",
+      "price": 1,
+      "quantity": 20,
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tristique, diam vel luctus accumsan, lacus lorem ornare libero, sed ultrices."
+    }
+  ]
+}
