@@ -3,14 +3,25 @@ import ProductList from './ProductList';
 
 const Home = () => {
   const [products, setProducts] = useState([]);
-  const [isLoading, setIsLoading] = useState([true])
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     fetch('http://localhost:8000/products')
-      .then((res) => res.json())
+      .then((res) => {
+        if (!res.ok) {
+          throw Error('Fetch failed');
+        }
+        return res.json();
+      })
       .then((data) => {
         setProducts(data);
         setIsLoading(false);
+        setError(null);
+      })
+      .catch((e) => {
+        setIsLoading(false);
+        setError(e.message)
       });
   }, []);
 
@@ -30,7 +41,7 @@ const Home = () => {
 
   return (
     <div className="home">
-      <h2>Homepage</h2>
+      {error && <div>{error}</div>}
       {isLoading && <div>Loading...</div>}
       <ul>
         <ProductList products={products} addToCart={addToCart} />
