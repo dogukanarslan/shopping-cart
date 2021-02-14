@@ -1,29 +1,10 @@
-import { useEffect, useState } from 'react';
 import ProductList from './ProductList';
+import useFetch from './useFetch';
 
 const Home = () => {
-  const [products, setProducts] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    fetch('http://localhost:8000/products')
-      .then((res) => {
-        if (!res.ok) {
-          throw Error('Fetch failed');
-        }
-        return res.json();
-      })
-      .then((data) => {
-        setProducts(data);
-        setIsLoading(false);
-        setError(null);
-      })
-      .catch((e) => {
-        setIsLoading(false);
-        setError(e.message)
-      });
-  }, []);
+  const { data: products, isLoading, error, setData } = useFetch(
+    'http://localhost:8000/products'
+  );
 
   const addToCart = (id) => {
     const newProducts = products.map((product) => {
@@ -36,7 +17,7 @@ const Home = () => {
       }
       return product;
     });
-    setProducts(newProducts);
+    setData(newProducts);
   };
 
   return (
