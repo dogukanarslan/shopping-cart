@@ -44,7 +44,11 @@
   margin: 20px 0;
   list-style: none;
 }
-.product-preview:hover {
+.product-preview a {
+  color: #000;
+  text-decoration: none;
+}
+.product-preview a:hover {
   color: var(--secondary-color);
   cursor: pointer;
 }
