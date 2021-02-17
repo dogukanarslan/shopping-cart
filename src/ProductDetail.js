@@ -27,7 +27,7 @@ const ProductDetail = () => {
       <p>{product.price}</p>
       <p>{product.quantity}</p>
       <p>{product.description}</p>
-      <button onClick={handleDelete}>Delete</button>
+      <button className="btn" onClick={handleDelete}>Delete</button>
     </div>
   );
 };

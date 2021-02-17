@@ -10,6 +10,18 @@
   font-family: 'Quicksand';
 }
 
+.btn {
+  color: #fff;
+  background-color: var(--primary-color);
+  border: none;
+  padding: 6px 10px;
+}
+.btn:disabled {
+  color: #fff;
+  background-color: var(--primary-color);
+  opacity: .6;
+}
+
 /* Navbar */
 .navbar {
   color: #fff;

@@ -49,8 +49,8 @@ const NewProduct = () => {
         />
         <label>Description</label>
         <textarea onChange={(e) => setDescription(e.target.value)}></textarea>
-        {!isPosting && <button>Create</button>}
-        {isPosting && <button disabled={isPosting}>Creating</button>}
+        {!isPosting && <button className="btn">Create</button>}
+        {isPosting && <button className="btn" disabled={isPosting}>Creating</button>}
       </form>
     </div>
   );
