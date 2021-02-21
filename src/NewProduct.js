@@ -26,32 +26,61 @@ const NewProduct = () => {
   }
 
   return (
-    <div className="product-new">
-      <h2>New Product</h2>
-      <form onSubmit={handleSubmit}>
-        <label>Name</label>
-        <input
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          type="text"
-        />
-        <label>Price</label>
-        <input
-          value={price}
-          onChange={(e) => setPrice(e.target.value)}
-          type="number"
-        />
-        <label>Quantity</label>
-        <input
-          value={quantity}
-          onChange={(e) => setQuantity(e.target.value)}
-          type="number"
-        />
-        <label>Description</label>
-        <textarea onChange={(e) => setDescription(e.target.value)}></textarea>
-        {!isPosting && <button className="btn">Create</button>}
-        {isPosting && <button className="btn" disabled={isPosting}>Creating</button>}
-      </form>
+    <div className="container">
+      <div className="row justify-content-center">
+        <div className="col-sm-6">
+          <form onSubmit={handleSubmit}>
+            <div className="mb-3">
+              <label className="form-label">Name</label>
+              <input
+                className="form-control"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                type="text"
+              />
+            </div>
+
+            <div className="mb-3">
+              <label className="form-label">Price</label>
+              <input
+                className="form-control"
+                value={price}
+                onChange={(e) => setPrice(e.target.value)}
+                type="number"
+              />
+            </div>
+
+            <div className="mb-3">
+              <label className="form-label">Quantity</label>
+              <input
+                className="form-control"
+                value={quantity}
+                onChange={(e) => setQuantity(e.target.value)}
+                type="number"
+              />
+            </div>
+
+            <div className="mb-3">
+              <label className="form-label">Description</label>
+              <textarea
+                className="form-control"
+                onChange={(e) => setDescription(e.target.value)}
+              ></textarea>
+            </div>
+
+            <div className="text-center">
+              {!isPosting && (
+                <button className="btn btn-secondary">Create</button>
+              )}
+              {isPosting && (
+                <button className="btn btn-secondary" disabled={isPosting}>
+                  Creating
+                </button>
+              )}
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
   );
 };
