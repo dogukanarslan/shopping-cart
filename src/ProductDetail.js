@@ -22,12 +22,22 @@ const ProductDetail = () => {
   }
 
   return (
-    <div>
-      <h4>{product.name}</h4>
-      <p>{product.price}</p>
-      <p>{product.quantity}</p>
-      <p>{product.description}</p>
-      <button className="btn" onClick={handleDelete}>Delete</button>
+    <div className="container">
+      <div class="row justify-content-center">
+        <div class="col-sm-12">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">{product.name}</h5>
+              <p class="card-text">{product.price} TL</p>
+              <p class="card-text">{product.quantity} Adet</p>
+              <p class="card-text">{product.description}</p>
+              <button className="btn btn-danger btn-sm" onClick={handleDelete}>
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
