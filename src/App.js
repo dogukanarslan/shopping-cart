@@ -1,6 +1,6 @@
 import Navbar from './Navbar';
 import Home from './Home';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 import Cart from './Cart';
 import NewProduct from './NewProduct';
 import ProductDetail from './ProductDetail';
