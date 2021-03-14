@@ -10,7 +10,7 @@ const Home = () => {
     const newProducts = products.map((product) => {
       if (product.id === id) {
         if (product.quantity > 0) {
-          product.quantity--;
+          return {...product, quantity: product.quantity - 1};
         } else {
           alert('Out of stock!');
         }
