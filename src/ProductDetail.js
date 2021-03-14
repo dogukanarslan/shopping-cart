@@ -23,14 +23,14 @@ const ProductDetail = () => {
 
   return (
     <div className="container">
-      <div class="row justify-content-center">
-        <div class="col-sm-12">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">{product.name}</h5>
-              <p class="card-text">{product.price} TL</p>
-              <p class="card-text">{product.quantity} Adet</p>
-              <p class="card-text">{product.description}</p>
+      <div className="row justify-content-center">
+        <div className="col-sm-12">
+          <div className="card">
+            <div className="card-body">
+              <h5 className="card-title">{product.name}</h5>
+              <p className="card-text">{product.price} TL</p>
+              <p className="card-text">{product.quantity} Adet</p>
+              <p className="card-text">{product.description}</p>
               <button className="btn btn-danger btn-sm" onClick={handleDelete}>
                 Delete
               </button>
