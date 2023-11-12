@@ -20,9 +20,7 @@ const ProductList = ({ products, addToCart }) => {
             <Card key={product.id}>
               <CardBody>
                 <Flex alignItems="center" justifyContent="space-between">
-                  <Heading>
-                    <Link to={`/products/${product.id}`}>{product.name}</Link>
-                  </Heading>
+                  <Heading>{product.name}</Heading>
                   <Badge
                     colorScheme={
                       product.quantity <= 5

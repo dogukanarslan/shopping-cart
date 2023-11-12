@@ -1,9 +1,8 @@
-import Navbar from './Navbar';
-import Home from './Home';
-import { HashRouter as Router, Route, Switch } from 'react-router-dom';
-import Cart from './Cart';
-import NewProduct from './NewProduct';
-import ProductDetail from './ProductDetail';
+import Navbar from "./Navbar";
+import Home from "./Home";
+import { HashRouter as Router, Route, Switch } from "react-router-dom";
+import Cart from "./Cart";
+import NewProduct from "./NewProduct";
 
 function App() {
   return (
@@ -21,9 +20,6 @@ function App() {
             </Route>
             <Route path="/products/create">
               <NewProduct />
-            </Route>
-            <Route path="/products/:id">
-              <ProductDetail />
             </Route>
           </Switch>
         </div>
