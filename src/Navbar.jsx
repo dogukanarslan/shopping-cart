@@ -10,7 +10,6 @@ const Navbar = () => {
       textColor="white"
       justifyContent="space-between"
       padding="1rem"
-      marginBottom="1rem"
     >
       <Heading fontSize="1rem">The Shopping Cart</Heading>
       <HStack spacing="2rem">

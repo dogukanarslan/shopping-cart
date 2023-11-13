@@ -1,21 +1,23 @@
-import { useState } from 'react';
-import { Redirect } from 'react-router-dom';
+import { useState } from "react";
+import { Redirect } from "react-router-dom";
+
+import { Button, Container, Input, Textarea, VStack } from "@chakra-ui/react";
 
 const NewProduct = () => {
-  const [name, setName] = useState('');
-  const [price, setPrice] = useState(0);
-  const [quantity, setQuantity] = useState(0);
-  const [description, setDescription] = useState('');
+  const [name, setName] = useState("");
+  const [price, setPrice] = useState("");
+  const [quantity, setQuantity] = useState("");
+  const [description, setDescription] = useState("");
   const [isPosting, setIsPosting] = useState(false);
   const [isRedirected, setIsRedirected] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsPosting(true);
-    fetch('http://localhost:8000/products', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, price, quantity, description })
+    fetch("http://localhost:8000/products", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, price, quantity, description }),
     }).then(() => {
       setIsRedirected(true);
     });
@@ -26,62 +28,49 @@ const NewProduct = () => {
   }
 
   return (
-    <div className="container">
-      <div className="row justify-content-center">
-        <div className="col-sm-6">
-          <form onSubmit={handleSubmit}>
-            <div className="mb-3">
-              <label className="form-label">Name</label>
-              <input
-                className="form-control"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                type="text"
-              />
-            </div>
+    <Container>
+      <form onSubmit={handleSubmit}>
+        <VStack spacing="5">
+          <Input
+            focusBorderColor="cyan.700"
+            value={name}
+            placeholder="Name"
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
 
-            <div className="mb-3">
-              <label className="form-label">Price</label>
-              <input
-                className="form-control"
-                value={price}
-                onChange={(e) => setPrice(e.target.value)}
-                type="number"
-              />
-            </div>
+          <Input
+            focusBorderColor="cyan.700"
+            type="number"
+            value={price}
+            placeholder="Price"
+            onChange={(e) => setPrice(e.target.value)}
+            required
+          />
 
-            <div className="mb-3">
-              <label className="form-label">Quantity</label>
-              <input
-                className="form-control"
-                value={quantity}
-                onChange={(e) => setQuantity(e.target.value)}
-                type="number"
-              />
-            </div>
+          <Input
+            focusBorderColor="cyan.700"
+            type="number"
+            value={quantity}
+            placeholder="Quantity"
+            onChange={(e) => setQuantity(e.target.value)}
+          />
 
-            <div className="mb-3">
-              <label className="form-label">Description</label>
-              <textarea
-                className="form-control"
-                onChange={(e) => setDescription(e.target.value)}
-              ></textarea>
-            </div>
+          <Textarea
+            focusBorderColor="cyan.700"
+            placeholder="Description"
+            onChange={(e) => setDescription(e.target.value)}
+          ></Textarea>
 
-            <div className="text-center">
-              {!isPosting && (
-                <button className="btn btn-secondary">Create</button>
-              )}
-              {isPosting && (
-                <button className="btn btn-secondary" disabled={isPosting}>
-                  Creating
-                </button>
-              )}
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
+          {!isPosting && <Button type="submit">Create</Button>}
+          {isPosting && (
+            <Button type="submit" disabled={isPosting}>
+              Creating
+            </Button>
+          )}
+        </VStack>
+      </form>
+    </Container>
   );
 };
 

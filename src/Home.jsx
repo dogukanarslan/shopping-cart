@@ -1,18 +1,21 @@
-import ProductList from './ProductList';
-import useFetch from './useFetch';
+import ProductList from "./ProductList";
+import useFetch from "./useFetch";
 
 const Home = () => {
-  const { data: products, isLoading, error, setData } = useFetch(
-    'http://localhost:8000/products'
-  );
+  const {
+    data: products,
+    isLoading,
+    error,
+    setData,
+  } = useFetch("http://localhost:8000/products");
 
   const addToCart = (id) => {
     const newProducts = products.map((product) => {
       if (product.id === id) {
         if (product.quantity > 0) {
-          return {...product, quantity: product.quantity - 1};
+          return { ...product, quantity: product.quantity - 1 };
         } else {
-          alert('Out of stock!');
+          alert("Out of stock!");
         }
       }
       return product;
@@ -21,12 +24,10 @@ const Home = () => {
   };
 
   return (
-    <div className="home">
+    <div>
       {error && <div>{error}</div>}
       {isLoading && <div>Loading...</div>}
-      <ul>
-        <ProductList products={products} addToCart={addToCart} />
-      </ul>
+      <ProductList products={products} addToCart={addToCart} />
     </div>
   );
 };
