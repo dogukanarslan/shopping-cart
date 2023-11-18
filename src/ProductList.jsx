@@ -31,10 +31,11 @@ const ProductList = ({ products, addToCart }) => {
                   {product.quantity}
                 </Badge>
               </Flex>
+              <Text>Price: {product.price}</Text>
               <Text>{product.description}</Text>
             </CardBody>
             <CardFooter>
-              <Button onClick={() => addToCart(product.id)}>Add</Button>
+              <Button onClick={() => addToCart(product)}>Add</Button>
             </CardFooter>
           </Card>
         );
