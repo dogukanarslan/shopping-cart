@@ -10,12 +10,12 @@ import {
   Heading,
 } from "@chakra-ui/react";
 
-const ProductList = ({ products, addToCart }) => {
+const ProductList = ({ products, addToCart, cartItems }) => {
   return (
     <SimpleGrid columns={4} spacing={5}>
       {products.map((product) => {
         return (
-          <Card key={product.id}>
+          <Card key={product.id} colorScheme="whatsapp">
             <CardBody>
               <Flex alignItems="center" justifyContent="space-between">
                 <Heading>{product.name}</Heading>
@@ -35,7 +35,10 @@ const ProductList = ({ products, addToCart }) => {
               <Text>{product.description}</Text>
             </CardBody>
             <CardFooter>
-              <Button onClick={() => addToCart(product)}>Add</Button>
+              <Button onClick={() => addToCart(product)}>
+                Add{" "}
+                {cartItems.find((item) => item.name === product.name)?.quantity}
+              </Button>
             </CardFooter>
           </Card>
         );
