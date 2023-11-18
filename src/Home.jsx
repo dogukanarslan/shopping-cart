@@ -10,14 +10,16 @@ const Home = ({ cartItems, setCartItems }) => {
   } = useFetch("http://localhost:8000/products");
 
   const addToCart = (product) => {
+    if (product.quantity === 0) {
+      alert("Out of stock!");
+      return;
+    }
+
     const newProducts = products.map((item) => {
       if (item.id === product.id) {
-        if (item.quantity > 0) {
-          return { ...item, quantity: item.quantity - 1 };
-        } else {
-          alert("Out of stock!");
-        }
+        return { ...item, quantity: item.quantity - 1 };
       }
+
       return item;
     });
     const newCartItems = cartItems.some((item) => item.name === product.name)
@@ -44,7 +46,11 @@ const Home = ({ cartItems, setCartItems }) => {
     <div>
       {error && <div>{error}</div>}
       {isLoading && <div>Loading...</div>}
-      <ProductList products={products} addToCart={addToCart} />
+      <ProductList
+        products={products}
+        cartItems={cartItems}
+        addToCart={addToCart}
+      />
     </div>
   );
 };
