@@ -7,6 +7,9 @@ import {
   Th,
   Tbody,
   Td,
+  Stat,
+  StatLabel,
+  StatNumber,
 } from "@chakra-ui/react";
 
 const Cart = ({ cartItems }) => {
@@ -19,7 +22,7 @@ const Cart = ({ cartItems }) => {
   return (
     <>
       <TableContainer>
-        <Table variant="simpe">
+        <Table variant="striped">
           <Thead>
             <Tr>
               <Th>Name</Th>
@@ -41,13 +44,16 @@ const Cart = ({ cartItems }) => {
         </Table>
       </TableContainer>
 
-      <Heading size="md">
-        Total Price:{" "}
-        {cartItems.reduce((total, currentValue) => {
-          console.log(currentValue);
-          return total + currentValue.quantity * currentValue.price;
-        }, 0)}
-      </Heading>
+      <Stat>
+        <StatLabel>Total Price</StatLabel>
+        <StatNumber>
+          {cartItems.reduce(
+            (total, currentValue) =>
+              total + currentValue.quantity * currentValue.price,
+            0
+          )}
+        </StatNumber>
+      </Stat>
     </>
   );
 };
