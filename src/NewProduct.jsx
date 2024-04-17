@@ -1,22 +1,22 @@
-import { useState } from "react";
-import { Redirect } from "react-router-dom";
+import { useState } from 'react';
+import { Redirect } from 'react-router-dom';
 
-import { Button, Container, Input, Textarea, VStack } from "@chakra-ui/react";
+import { Button, Container, Input, Textarea, VStack } from '@chakra-ui/react';
 
 const NewProduct = () => {
-  const [name, setName] = useState("");
-  const [price, setPrice] = useState("");
-  const [quantity, setQuantity] = useState("");
-  const [description, setDescription] = useState("");
+  const [name, setName] = useState('');
+  const [price, setPrice] = useState('');
+  const [quantity, setQuantity] = useState('');
+  const [description, setDescription] = useState('');
   const [isPosting, setIsPosting] = useState(false);
   const [isRedirected, setIsRedirected] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsPosting(true);
-    fetch("http://localhost:8000/products", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
+    fetch('http://localhost:8000/products', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name, price, quantity, description }),
     }).then(() => {
       setIsRedirected(true);

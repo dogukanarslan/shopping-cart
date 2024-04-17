@@ -18,7 +18,8 @@
     "deploy": "gh-pages -d build",
     "start": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "format": "npx prettier . --write"
   },
   "eslintConfig": {
     "extends": [
