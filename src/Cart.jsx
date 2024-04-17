@@ -10,7 +10,7 @@ import {
   Stat,
   StatLabel,
   StatNumber,
-} from "@chakra-ui/react";
+} from '@chakra-ui/react';
 
 const Cart = ({ cartItems }) => {
   console.log(cartItems);

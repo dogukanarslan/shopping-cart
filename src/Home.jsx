@@ -1,5 +1,5 @@
-import ProductList from "./ProductList";
-import useFetch from "./useFetch";
+import ProductList from './ProductList';
+import useFetch from './useFetch';
 
 const Home = ({ cartItems, setCartItems }) => {
   const {
@@ -7,11 +7,11 @@ const Home = ({ cartItems, setCartItems }) => {
     isLoading,
     error,
     setData,
-  } = useFetch("http://localhost:8000/products");
+  } = useFetch('http://localhost:8000/products');
 
   const addToCart = (product) => {
     if (product.quantity === 0) {
-      alert("Out of stock!");
+      alert('Out of stock!');
       return;
     }
 

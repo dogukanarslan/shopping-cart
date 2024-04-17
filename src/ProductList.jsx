@@ -8,7 +8,7 @@ import {
   Badge,
   Text,
   Heading,
-} from "@chakra-ui/react";
+} from '@chakra-ui/react';
 
 const ProductList = ({ products, addToCart, cartItems }) => {
   return (
@@ -22,10 +22,10 @@ const ProductList = ({ products, addToCart, cartItems }) => {
                 <Badge
                   colorScheme={
                     product.quantity <= 5
-                      ? "red"
+                      ? 'red'
                       : product.quantity <= 10
-                      ? "yellow"
-                      : "green"
+                        ? 'yellow'
+                        : 'green'
                   }
                 >
                   {product.quantity}
@@ -36,7 +36,7 @@ const ProductList = ({ products, addToCart, cartItems }) => {
             </CardBody>
             <CardFooter>
               <Button onClick={() => addToCart(product)}>
-                Add{" "}
+                Add{' '}
                 {cartItems.find((item) => item.name === product.name)?.quantity}
               </Button>
             </CardFooter>
