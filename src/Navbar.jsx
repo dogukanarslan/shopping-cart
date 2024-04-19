@@ -6,10 +6,11 @@ const Navbar = ({ itemCount }) => {
   return (
     <Box bgColor="blackAlpha.800" textColor="white">
       <Container maxW="container.xl">
-        <Flex as="nav" justifyContent="space-between" padding="1rem">
+        <Flex as="nav" justifyContent="space-between" paddingY="1rem">
           <Heading fontSize="1rem">The Shopping Cart</Heading>
           <HStack spacing="2rem" fontSize="sm">
-            <Link to="/">Home</Link>
+            <Link to="/receipts">Receipts</Link>
+            <Link to="/">Products</Link>
             <Link to="/cart">Cart {itemCount ? `(${itemCount})` : null}</Link>
             <Link to="/products/create">Create Product</Link>
           </HStack>

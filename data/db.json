@@ -42,5 +42,14 @@
       "quantity": 5,
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tristique, diam vel luctus accumsan, lacus lorem ornare libero, sed ultrices."
     }
+  ],
+  "receipts": [
+    {
+      "id": 1,
+      "name": "Market Shopping",
+      "price": 100,
+      "items": [],
+      "created_at": 1713392205985
+    }
   ]
 }
