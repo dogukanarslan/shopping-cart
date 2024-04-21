@@ -13,9 +13,12 @@ import {
   StackDivider,
 } from '@chakra-ui/react';
 import useFetch from './useFetch';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 export const Receipts = () => {
   const { data: receipts } = useFetch('http://localhost:8000/receipts');
+
+  const history = useHistory();
 
   return (
     <SimpleGrid columns={4} spacing={5}>
@@ -46,7 +49,9 @@ export const Receipts = () => {
               </Stack>
             </CardBody>
             <CardFooter>
-              <Button>View</Button>
+              <Button onClick={() => history.push(`/receipts/${receipt.id}`)}>
+                View
+              </Button>
             </CardFooter>
           </Card>
         );
