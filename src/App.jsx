@@ -7,6 +7,7 @@ import Home from './Home';
 import Cart from './Cart';
 import NewProduct from './NewProduct';
 import { Receipts } from './Receipts';
+import { ReceiptDetail } from './ReceiptDetail';
 
 function App() {
   const [cartItems, setCartItems] = useState([]);
@@ -26,6 +27,9 @@ function App() {
             </Route>
             <Route path="/products/create">
               <NewProduct />
+            </Route>
+            <Route path="/receipts/:id">
+              <ReceiptDetail />
             </Route>
             <Route path="/receipts">
               <Receipts />
