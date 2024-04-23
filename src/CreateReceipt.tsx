@@ -1,23 +1,31 @@
 import React, { useState } from 'react';
-import { Button, Input, Box } from '@chakra-ui/react';
+import {
+  Button,
+  Input,
+  Box,
+  NumberInput,
+  NumberInputField,
+} from '@chakra-ui/react';
 
 const CreateReceipt = () => {
   const [name, setName] = useState('');
   const [price, setPrice] = useState(0);
   const [items, setItems] = useState([]);
 
-  const changeItemName = (id: number, name: string) => {
+  const changeItem = (id: number, name: string, price: string) => {
     const newItems = items.map((item) => {
       if (item.id === id) {
-        return { ...item, name };
+        return { ...item, name, price: parseFloat(price) };
       }
 
       return item;
     });
+
+    setItems(newItems);
   };
 
   const addItem = () => {
-    setItems((prev) => [...prev, { id: Math.random() }]);
+    setItems((prev) => [...prev, { id: Math.random(), name: '' }]);
   };
 
   const createReceipt = () => {
@@ -36,11 +44,13 @@ const CreateReceipt = () => {
         value={name}
         onChange={(e) => setName(e.target.value)}
       />
-      <Input
-        placeholder="Total price"
-        value={price}
-        onChange={(e) => setPrice(e.target.value)}
-      />
+      <NumberInput>
+        <NumberInputField
+          placeholder="Total price"
+          value={price}
+          onChange={(e) => setPrice(e.target.value)}
+        />
+      </NumberInput>
       <Box display="flex" justifyContent="space-between">
         <Button my="0.8rem" onClick={addItem}>
           Add Item
@@ -52,9 +62,18 @@ const CreateReceipt = () => {
       {items.map((item) => (
         <Box mb="10px" key={item.id}>
           <Input
+            mb="10px"
+            placeholder="Item name"
             value={item.name}
-            onChange={(e) => changeItemName(item.id, item.name)}
+            onChange={(e) => changeItem(item.id, e.target.value, item.price)}
           />
+          <NumberInput>
+            <NumberInputField
+              placeholder="Item price"
+              value={item.price}
+              onChange={(e) => changeItem(item.id, item.name, e.target.value)}
+            />
+          </NumberInput>
         </Box>
       ))}
     </div>
