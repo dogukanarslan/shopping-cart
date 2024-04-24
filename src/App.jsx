@@ -4,7 +4,6 @@ import { Box, Container } from '@chakra-ui/react';
 
 import Navbar from './Navbar';
 import Home from './Home';
-import Cart from './Cart';
 import NewProduct from './NewProduct';
 import { Receipts } from './Receipts';
 import { ReceiptDetail } from './ReceiptDetail';
@@ -22,9 +21,6 @@ function App() {
           <Switch>
             <Route exact path="/">
               <Home cartItems={cartItems} setCartItems={setCartItems} />
-            </Route>
-            <Route path="/cart">
-              <Cart cartItems={cartItems} />
             </Route>
             <Route path="/products/create">
               <NewProduct />

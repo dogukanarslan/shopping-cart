@@ -22,7 +22,6 @@ export const ReceiptDetail = () => {
   const { id } = useParams();
 
   const { data, isLoading } = useFetch(`http://localhost:8000/receipts/${id}`);
-  console.log(data);
 
   if (isLoading) {
     return <Spinner />;

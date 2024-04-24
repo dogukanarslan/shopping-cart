@@ -3,14 +3,12 @@ import {
   Flex,
   Card,
   CardBody,
-  CardFooter,
-  Button,
   Badge,
   Text,
   Heading,
 } from '@chakra-ui/react';
 
-const ProductList = ({ products, addToCart, cartItems }) => {
+const ProductList = ({ products, cartItems }) => {
   return (
     <SimpleGrid columns={4} spacing={5}>
       {products.map((product) => {
@@ -34,12 +32,6 @@ const ProductList = ({ products, addToCart, cartItems }) => {
               <Text>Price: {product.price}</Text>
               <Text>{product.description}</Text>
             </CardBody>
-            <CardFooter>
-              <Button onClick={() => addToCart(product)}>
-                Add{' '}
-                {cartItems.find((item) => item.name === product.name)?.quantity}
-              </Button>
-            </CardFooter>
           </Card>
         );
       })}
