@@ -1,3 +1,4 @@
+import { Spinner } from '@chakra-ui/react';
 import ProductList from './ProductList';
 import useFetch from './useFetch';
 
@@ -42,16 +43,20 @@ const Home = ({ cartItems, setCartItems }) => {
     setData(newProducts);
   };
 
+  if (isLoading) {
+    return <Spinner />;
+  }
+
+  if (error) {
+    return error;
+  }
+
   return (
-    <div>
-      {error && <div>{error}</div>}
-      {isLoading && <div>Loading...</div>}
-      <ProductList
-        products={products}
-        cartItems={cartItems}
-        addToCart={addToCart}
-      />
-    </div>
+    <ProductList
+      products={products}
+      cartItems={cartItems}
+      addToCart={addToCart}
+    />
   );
 };
 
