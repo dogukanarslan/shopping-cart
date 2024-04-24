@@ -48,7 +48,10 @@
       "id": 1,
       "name": "Market Shopping",
       "price": 100,
-      "items": [],
+      "items": [
+        { "id": 1, "name": "Tomato", "price": 10, "quantity": 5 },
+        { "id": 1, "name": "Eggs", "price": 2, "quantity": 2 }
+      ],
       "created_at": 1713392205985
     }
   ]
