@@ -12,6 +12,7 @@ import {
   Stat,
   StatLabel,
   StatNumber,
+  Spinner,
 } from '@chakra-ui/react';
 import useFetch from './useFetch';
 import React from 'react';
@@ -20,9 +21,14 @@ import { useParams } from 'react-router-dom';
 export const ReceiptDetail = () => {
   const { id } = useParams();
 
-  const {
-    data: { name, created_at, items },
-  } = useFetch(`http://localhost:8000/receipts/${id}`);
+  const { data, isLoading } = useFetch(`http://localhost:8000/receipts/${id}`);
+  console.log(data);
+
+  if (isLoading) {
+    return <Spinner />;
+  }
+
+  const { name, created_at, items } = data;
 
   return (
     <div>
