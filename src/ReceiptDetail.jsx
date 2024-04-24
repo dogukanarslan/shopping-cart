@@ -22,7 +22,7 @@ export const ReceiptDetail = () => {
 
   const {
     data: { name, created_at, items },
-  }: any = useFetch(`http://localhost:8000/receipts/${id}`);
+  } = useFetch(`http://localhost:8000/receipts/${id}`);
 
   return (
     <div>
@@ -38,7 +38,7 @@ export const ReceiptDetail = () => {
         <CardBody>
           <Stack divider={<StackDivider />} spacing="4">
             {items?.map((item) => (
-              <Box>
+              <Box key={item.id}>
                 <Heading size="xs" textTransform="uppercase">
                   {item.name}
                 </Heading>
