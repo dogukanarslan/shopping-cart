@@ -12,7 +12,7 @@ const CreateReceipt = () => {
   const [price, setPrice] = useState(0);
   const [items, setItems] = useState([]);
 
-  const changeItem = (id: number, name: string, price: string) => {
+  const changeItem = (id, name, price) => {
     const newItems = items.map((item) => {
       if (item.id === id) {
         return { ...item, name, price: parseFloat(price) };
