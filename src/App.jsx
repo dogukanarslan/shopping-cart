@@ -6,21 +6,23 @@ import Navbar from './Navbar';
 import Home from './Home';
 import NewProduct from './NewProduct';
 import { Receipts } from './Receipts';
+import Products from './Products';
 import { ReceiptDetail } from './ReceiptDetail';
 import CreateReceipt from './CreateReceipt';
 
 function App() {
-  const [cartItems, setCartItems] = useState([]);
-
   return (
     <Router>
-      <Navbar itemCount={cartItems.length} />
+      <Navbar />
 
       <Box padding="1rem">
         <Container maxW="container.xl">
           <Switch>
             <Route exact path="/">
-              <Home cartItems={cartItems} setCartItems={setCartItems} />
+              <Home />
+            </Route>
+            <Route exact path="/products">
+              <Products />
             </Route>
             <Route path="/products/create">
               <NewProduct />
