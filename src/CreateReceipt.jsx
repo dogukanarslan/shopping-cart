@@ -12,10 +12,15 @@ const CreateReceipt = () => {
   const [price, setPrice] = useState(0);
   const [items, setItems] = useState([]);
 
-  const changeItem = (id, name, price) => {
+  const changeItem = (id, name, price, quantity) => {
     const newItems = items.map((item) => {
       if (item.id === id) {
-        return { ...item, name, price: parseFloat(price) };
+        return {
+          ...item,
+          name,
+          price: parseFloat(price),
+          quantity: parseFloat(quantity),
+        };
       }
 
       return item;
@@ -28,7 +33,8 @@ const CreateReceipt = () => {
     setItems((prev) => [...prev, { id: Math.random(), name: '' }]);
   };
 
-  const createReceipt = () => {
+  const createReceipt = (e) => {
+    e.preventDefault();
     fetch('http://localhost:8000/receipts', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -37,25 +43,19 @@ const CreateReceipt = () => {
   };
 
   return (
-    <div>
+    <form onSubmit={createReceipt}>
       <Input
         mb="0.5rem"
         placeholder="Receipt name"
         value={name}
         onChange={(e) => setName(e.target.value)}
       />
-      <NumberInput>
-        <NumberInputField
-          placeholder="Total price"
-          value={price}
-          onChange={(e) => setPrice(e.target.value)}
-        />
-      </NumberInput>
+
       <Box display="flex" justifyContent="space-between">
         <Button my="0.8rem" onClick={addItem}>
           Add Item
         </Button>
-        <Button my="0.8rem" onClick={createReceipt}>
+        <Button type="submit" my="0.8rem">
           Create Receipt
         </Button>
       </Box>
@@ -74,9 +74,18 @@ const CreateReceipt = () => {
               onChange={(e) => changeItem(item.id, item.name, e.target.value)}
             />
           </NumberInput>
+          <NumberInput>
+            <NumberInputField
+              placeholder="Item quantity"
+              value={item.quantity}
+              onChange={(e) =>
+                changeItem(item.id, item.name, item.price, e.target.value)
+              }
+            />
+          </NumberInput>
         </Box>
       ))}
-    </div>
+    </form>
   );
 };
 
