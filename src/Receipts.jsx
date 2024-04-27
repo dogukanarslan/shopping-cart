@@ -18,14 +18,20 @@ import useFetch from './useFetch';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 export const Receipts = () => {
-  const { data: receipts, isLoading } = useFetch(
-    'http://localhost:8000/receipts'
-  );
+  const {
+    data: receipts,
+    isLoading,
+    error,
+  } = useFetch('http://localhost:8000/receipts');
 
   const history = useHistory();
 
   if (isLoading) {
     return <Spinner />;
+  }
+
+  if (error) {
+    return error;
   }
 
   return (
