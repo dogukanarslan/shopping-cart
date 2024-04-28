@@ -45,10 +45,14 @@ export const Receipts = () => {
             <Stack divider={<StackDivider />}>
               <Box>
                 <Heading size="xs" textTransform="uppercase">
-                  Price
+                  Total
                 </Heading>
                 <Text pt="2" fontSize="sm">
-                  {receipt.price}
+                  $
+                  {receipt.items.reduce(
+                    (total, item) => (total += item.price * item.quantity),
+                    0
+                  )}
                 </Text>
               </Box>
               <Box>
