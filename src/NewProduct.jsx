@@ -6,7 +6,6 @@ import { Button, Container, Input, Textarea, VStack } from '@chakra-ui/react';
 const NewProduct = () => {
   const [name, setName] = useState('');
   const [price, setPrice] = useState('');
-  const [quantity, setQuantity] = useState('');
   const [description, setDescription] = useState('');
   const [isPosting, setIsPosting] = useState(false);
   const [isRedirected, setIsRedirected] = useState(false);
@@ -17,7 +16,7 @@ const NewProduct = () => {
     fetch('http://localhost:8000/products', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, price, quantity, description }),
+      body: JSON.stringify({ name, price, description }),
     }).then(() => {
       setIsRedirected(true);
     });
@@ -46,14 +45,6 @@ const NewProduct = () => {
             placeholder="Price"
             onChange={(e) => setPrice(e.target.value)}
             required
-          />
-
-          <Input
-            focusBorderColor="cyan.700"
-            type="number"
-            value={quantity}
-            placeholder="Quantity"
-            onChange={(e) => setQuantity(e.target.value)}
           />
 
           <Textarea
