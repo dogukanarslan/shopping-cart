@@ -13,7 +13,6 @@ const Navbar = () => {
           <HStack spacing="2rem" fontSize="sm">
             <Link to="/receipts">Receipts</Link>
             <Link to="/products">Products</Link>
-            <Link to="/products/create">Create Product</Link>
           </HStack>
         </Flex>
       </Container>

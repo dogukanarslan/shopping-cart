@@ -1,29 +1,6 @@
-import {
-  SimpleGrid,
-  Flex,
-  Card,
-  CardBody,
-  Badge,
-  Text,
-  Heading,
-} from '@chakra-ui/react';
+import Product from './Product';
 
-const ProductList = ({ products, cartItems }) => {
-  return (
-    <SimpleGrid columns={4} spacing={5}>
-      {products.map((product) => {
-        return (
-          <Card key={product.id} colorScheme="whatsapp">
-            <CardBody>
-              <Heading>{product.name}</Heading>
-              <Text>Price: {product.price}</Text>
-              <Text>{product.description}</Text>
-            </CardBody>
-          </Card>
-        );
-      })}
-    </SimpleGrid>
-  );
-};
+const ProductList = ({ products }) =>
+  products.map((product) => <Product key={product.id} product={product} />);
 
 export default ProductList;
