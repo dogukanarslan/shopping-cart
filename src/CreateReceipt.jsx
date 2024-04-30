@@ -5,6 +5,8 @@ import {
   Box,
   NumberInput,
   NumberInputField,
+  VStack,
+  StackDivider,
 } from '@chakra-ui/react';
 
 const CreateReceipt = () => {
@@ -59,32 +61,34 @@ const CreateReceipt = () => {
           Create Receipt
         </Button>
       </Box>
-      {items.map((item) => (
-        <Box mb="10px" key={item.id}>
-          <Input
-            mb="10px"
-            placeholder="Item name"
-            value={item.name}
-            onChange={(e) => changeItem(item.id, e.target.value, item.price)}
-          />
-          <NumberInput>
-            <NumberInputField
-              placeholder="Item price"
-              value={item.price}
-              onChange={(e) => changeItem(item.id, item.name, e.target.value)}
+      <VStack spacing={10} divider={<StackDivider />}>
+        {items.map((item) => (
+          <Box key={item.id} w="100%">
+            <Input
+              mb="10px"
+              placeholder="Item name"
+              value={item.name}
+              onChange={(e) => changeItem(item.id, e.target.value, item.price)}
             />
-          </NumberInput>
-          <NumberInput>
-            <NumberInputField
-              placeholder="Item quantity"
-              value={item.quantity}
-              onChange={(e) =>
-                changeItem(item.id, item.name, item.price, e.target.value)
-              }
-            />
-          </NumberInput>
-        </Box>
-      ))}
+            <NumberInput mb="10px">
+              <NumberInputField
+                placeholder="Item price"
+                value={item.price}
+                onChange={(e) => changeItem(item.id, item.name, e.target.value)}
+              />
+            </NumberInput>
+            <NumberInput>
+              <NumberInputField
+                placeholder="Item quantity"
+                value={item.quantity}
+                onChange={(e) =>
+                  changeItem(item.id, item.name, item.price, e.target.value)
+                }
+              />
+            </NumberInput>
+          </Box>
+        ))}
+      </VStack>
     </form>
   );
 };
