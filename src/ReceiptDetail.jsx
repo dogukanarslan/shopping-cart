@@ -21,10 +21,16 @@ import { useParams } from 'react-router-dom';
 export const ReceiptDetail = () => {
   const { id } = useParams();
 
-  const { data, isLoading } = useFetch(`http://localhost:8000/receipts/${id}`);
+  const { data, isLoading, error } = useFetch(
+    `http://localhost:8000/receipts/${id}`
+  );
 
   if (isLoading) {
     return <Spinner />;
+  }
+
+  if (error) {
+    return error;
   }
 
   const { name, created_at, items } = data;
