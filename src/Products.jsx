@@ -1,5 +1,6 @@
 import React from 'react';
-import { Spinner } from '@chakra-ui/react';
+import { Box, SimpleGrid, Spinner } from '@chakra-ui/react';
+import { Link } from 'react-router-dom';
 import ProductList from './ProductList';
 import useFetch from './useFetch';
 
@@ -18,7 +19,21 @@ const Products = () => {
     return error;
   }
 
-  return <ProductList products={products} />;
+  return (
+    <SimpleGrid columns={4} spacing={5}>
+      <ProductList products={products} />
+      <Box
+        border="1px"
+        borderColor="gray.100"
+        borderRadius="md"
+        display="flex"
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Link to="/products/create">New Product</Link>
+      </Box>
+    </SimpleGrid>
+  );
 };
 
 export default Products;
