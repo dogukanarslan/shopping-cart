@@ -93,21 +93,25 @@ const CreateReceipt = () => {
       <Box display="flex" justifyContent="space-between">
         <Button type="submit">Create Receipt</Button>
       </Box>
-      <Box my={5}>
+      <Box my={2}>
         {isLoading ? (
           'Fetching products'
         ) : (
-          <Stack direction="row">
-            {products.map((product) => (
-              <Button
-                key={product.id}
-                size="sm"
-                onClick={() => addSelectedProduct(product)}
-              >
-                {product.name}
-              </Button>
-            ))}
-          </Stack>
+          <>
+            <Heading size="md">Products</Heading>
+            <Stack direction="row">
+              {products.map((product) => (
+                <Button
+                  isDisabled={items.some((item) => item.name === product.name)}
+                  key={product.id}
+                  size="sm"
+                  onClick={() => addSelectedProduct(product)}
+                >
+                  {product.name}
+                </Button>
+              ))}
+            </Stack>
+          </>
         )}
       </Box>
 
@@ -135,6 +139,7 @@ const CreateReceipt = () => {
         <Button onClick={addItem}>Add Item</Button>
       </Box>
 
+      <Heading size="md">Receipt Items</Heading>
       {items.length === 0 ? (
         'No item added'
       ) : (
