@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import {
   Button,
   Input,
@@ -23,6 +24,8 @@ const CreateReceipt = () => {
   const [itemName, setItemName] = useState('');
   const [itemPrice, setItemPrice] = useState('');
   const [itemQuantity, setItemQuantity] = useState('');
+
+  const history = useHistory('');
 
   const { data: products, isLoading } = useFetch(
     'http://localhost:8000/products'
@@ -75,13 +78,17 @@ const CreateReceipt = () => {
     ]);
   };
 
-  const createReceipt = (e) => {
+  const createReceipt = async (e) => {
     e.preventDefault();
-    fetch('http://localhost:8000/receipts', {
+    const res = await fetch('http://localhost:8000/receipts', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name, items, created_at: new Date() }),
     });
+
+    if (res.ok) {
+      history.push('/receipts');
+    }
   };
 
   return (
