@@ -67,15 +67,25 @@ const CreateReceipt = () => {
   };
 
   const addSelectedProduct = (product) => {
-    setItems((prev) => [
-      ...prev,
-      {
-        id: Math.random(),
-        name: product.name,
-        price: product.price,
-        quantity: 1,
-      },
-    ]);
+    const isProductAdded = items.some((item) => item.name === product.name);
+    if (!isProductAdded) {
+      setItems((prev) => [
+        ...prev,
+        {
+          id: Math.random(),
+          name: product.name,
+          price: product.price,
+          quantity: 1,
+        },
+      ]);
+    } else {
+      const newItems = items.map((item) =>
+        item.name === product.name
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
+      );
+      setItems(newItems);
+    }
   };
 
   const createReceipt = async (e) => {
@@ -112,9 +122,6 @@ const CreateReceipt = () => {
               <Stack direction="row">
                 {products.map((product) => (
                   <Button
-                    isDisabled={items.some(
-                      (item) => item.name === product.name
-                    )}
                     key={product.id}
                     size="sm"
                     onClick={() => addSelectedProduct(product)}
