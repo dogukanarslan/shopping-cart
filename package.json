@@ -19,8 +19,7 @@
     "start": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "format": "npx prettier . --write",
-    "json-db" : "npx json-server data/db.json -p 8000"
+    "format": "npx prettier . --write"
   },
   "eslintConfig": {
     "extends": [

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+
 import {
   Button,
   Input,
@@ -8,14 +9,12 @@ import {
   NumberInputField,
   VStack,
   Text,
-  Stack,
   Card,
   CardBody,
   Heading,
   FormControl,
   FormLabel,
 } from '@chakra-ui/react';
-import useFetch from './useFetch';
 
 const CreateReceipt = () => {
   const [name, setName] = useState('');
@@ -26,27 +25,6 @@ const CreateReceipt = () => {
   const [itemQuantity, setItemQuantity] = useState('');
 
   const history = useHistory('');
-
-  const { data: products, isLoading } = useFetch(
-    'http://localhost:8000/products'
-  );
-
-  const changeItem = (id, name, price, quantity) => {
-    const newItems = items.map((item) => {
-      if (item.id === id) {
-        return {
-          ...item,
-          name,
-          price: parseFloat(price),
-          quantity: parseFloat(quantity),
-        };
-      }
-
-      return item;
-    });
-
-    setItems(newItems);
-  };
 
   const addItem = (e) => {
     e.preventDefault();
@@ -66,39 +44,23 @@ const CreateReceipt = () => {
     setItemQuantity('');
   };
 
-  const addSelectedProduct = (product) => {
-    const isProductAdded = items.some((item) => item.name === product.name);
-    if (!isProductAdded) {
-      setItems((prev) => [
-        ...prev,
-        {
-          id: Math.random(),
-          name: product.name,
-          price: product.price,
-          quantity: 1,
-        },
-      ]);
-    } else {
-      const newItems = items.map((item) =>
-        item.name === product.name
-          ? { ...item, quantity: item.quantity + 1 }
-          : item
-      );
-      setItems(newItems);
-    }
-  };
-
   const createReceipt = async (e) => {
     e.preventDefault();
-    const res = await fetch('http://localhost:8000/receipts', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, items, created_at: new Date() }),
-    });
+    const receipts = JSON.parse(localStorage.getItem('receipts') || '[]');
+    localStorage.setItem(
+      'receipts',
+      JSON.stringify([
+        ...receipts,
+        {
+          id: Math.floor(Math.random() * 1000),
+          name,
+          items,
+          created_at: new Date(),
+        },
+      ])
+    );
 
-    if (res.ok) {
-      history.push('/receipts');
-    }
+    history.push('/receipts');
   };
 
   return (
@@ -113,31 +75,11 @@ const CreateReceipt = () => {
           />
         </FormControl>
 
-        <Box my={2}>
-          {isLoading ? (
-            'Fetching products'
-          ) : (
-            <>
-              <Heading size="md">Products</Heading>
-              <Stack direction="row">
-                {products.map((product) => (
-                  <Button
-                    key={product.id}
-                    size="sm"
-                    onClick={() => addSelectedProduct(product)}
-                  >
-                    {product.name}
-                  </Button>
-                ))}
-              </Stack>
-            </>
-          )}
-        </Box>
-
         <Box display="flex" justifyContent="end">
           <Button type="submit">Create Receipt</Button>
         </Box>
       </form>
+
       <form onSubmit={addItem}>
         <Box mb={2}>
           <FormControl isRequired>
@@ -174,6 +116,7 @@ const CreateReceipt = () => {
           <Button type="submit">Add Item</Button>
         </Box>
       </form>
+
       <Heading size="md">Receipt Items</Heading>
       {items.length === 0 ? (
         'No item added'
