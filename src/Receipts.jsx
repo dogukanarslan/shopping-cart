@@ -3,21 +3,10 @@ import { Link } from 'react-router-dom';
 
 import ReceiptList from './ReceiptList';
 import useFetch from './useFetch';
+import { getDB } from './db';
 
 export const Receipts = () => {
-  const {
-    data: receipts,
-    isLoading,
-    error,
-  } = useFetch('http://localhost:8000/receipts');
-
-  if (isLoading) {
-    return <Spinner />;
-  }
-
-  if (error) {
-    return error;
-  }
+  const receipts = getDB('receipts') || [];
 
   return (
     <SimpleGrid columns={4} spacing={5}>
