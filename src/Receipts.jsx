@@ -2,7 +2,6 @@ import { SimpleGrid, Box, Spinner } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 
 import ReceiptList from './ReceiptList';
-import useFetch from './useFetch';
 import { getDB } from './db';
 
 export const Receipts = () => {
