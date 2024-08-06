@@ -12,7 +12,6 @@ const Navbar = () => {
           </Heading>
           <HStack spacing="2rem" fontSize="sm">
             <Link to="/receipts">Receipts</Link>
-            <Link to="/products">Products</Link>
           </HStack>
         </Flex>
       </Container>
