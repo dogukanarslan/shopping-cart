@@ -1,4 +1,3 @@
-import React from 'react';
 import Receipt from './Receipt';
 
 const ReceiptList = ({ receipts }) =>
