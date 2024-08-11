@@ -1,11 +1,11 @@
-import { SimpleGrid, Box, Spinner } from '@chakra-ui/react';
+import { SimpleGrid, Box } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 
 import ReceiptList from './ReceiptList';
-import { getDB } from './db';
+import { useLocalStorage } from './useLocalStorage';
 
 export const Receipts = () => {
-  const receipts = getDB('receipts') || [];
+  const [receipts] = useLocalStorage('receipts', []);
 
   return (
     <SimpleGrid columns={4} spacing={5}>
