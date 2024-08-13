@@ -14,7 +14,6 @@ import {
   StatLabel,
   StatNumber,
   Button,
-  CardFooter,
 } from '@chakra-ui/react';
 
 import { getStorageValue } from './useLocalStorage';
@@ -38,6 +37,16 @@ export const ReceiptDetail = () => {
 
   return (
     <div>
+      <Flex mb="2">
+        <Button
+          colorScheme="red"
+          marginLeft="auto"
+          onClick={() => deleteReceipt(receipt.id)}
+        >
+          Delete
+        </Button>
+      </Flex>
+
       <Card>
         <CardHeader>
           <Flex>
@@ -68,11 +77,6 @@ export const ReceiptDetail = () => {
             ))}
           </Stack>
         </CardBody>
-        <CardFooter>
-          <Button marginLeft="auto" onClick={() => deleteReceipt(receipt.id)}>
-            Delete
-          </Button>
-        </CardFooter>
       </Card>
       <Stat>
         <StatLabel>Total Price</StatLabel>
