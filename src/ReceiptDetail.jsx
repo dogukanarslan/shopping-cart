@@ -1,3 +1,4 @@
+import { useParams, useHistory } from 'react-router-dom';
 import {
   Heading,
   Flex,
@@ -12,13 +13,14 @@ import {
   Stat,
   StatLabel,
   StatNumber,
+  Button,
 } from '@chakra-ui/react';
 
-import { useParams } from 'react-router-dom';
 import { getStorageValue } from './useLocalStorage';
 
 export const ReceiptDetail = () => {
   const { id } = useParams();
+  const history = useHistory();
 
   const receipt = getStorageValue('receipts').find(
     (receipt) => receipt.id === parseInt(id)
@@ -26,8 +28,25 @@ export const ReceiptDetail = () => {
 
   const { name, created_at, items } = receipt;
 
+  const deleteReceipt = (receiptId) => {
+    const receipts = JSON.parse(localStorage.getItem('receipts'));
+    const newReceipts = receipts.filter((receipt) => receipt.id !== receiptId);
+    localStorage.setItem('receipts', JSON.stringify(newReceipts));
+    history.push('/receipts');
+  };
+
   return (
     <div>
+      <Flex mb="2">
+        <Button
+          colorScheme="red"
+          marginLeft="auto"
+          onClick={() => deleteReceipt(receipt.id)}
+        >
+          Delete
+        </Button>
+      </Flex>
+
       <Card>
         <CardHeader>
           <Flex>
