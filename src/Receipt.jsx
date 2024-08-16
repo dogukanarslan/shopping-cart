@@ -11,6 +11,7 @@ import {
   Stack,
   StackDivider,
 } from '@chakra-ui/react';
+import { formatDate } from './utils';
 
 const Receipt = ({ receipt }) => {
   const history = useHistory();
@@ -39,7 +40,7 @@ const Receipt = ({ receipt }) => {
               Created At
             </Heading>
             <Text pt="2" fontSize="sm">
-              {new Date(receipt.created_at).toUTCString()}
+              {formatDate(receipt.created_at)}
             </Text>
           </Box>
         </Stack>
