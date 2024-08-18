@@ -17,6 +17,7 @@ import {
 } from '@chakra-ui/react';
 
 import { getStorageValue } from './useLocalStorage';
+import { formatDate } from './utils';
 
 export const ReceiptDetail = () => {
   const { id } = useParams();
@@ -52,7 +53,7 @@ export const ReceiptDetail = () => {
           <Flex>
             <Heading size="md">{name}</Heading>
             <Spacer />
-            <Heading size="md">{new Date(created_at).toDateString()}</Heading>
+            <Heading size="md">{formatDate(created_at)}</Heading>
           </Flex>
         </CardHeader>
 
