@@ -1,11 +1,12 @@
-import { SimpleGrid, Box } from '@chakra-ui/react';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { SimpleGrid, Box } from '@chakra-ui/react';
 
 import ReceiptList from './ReceiptList';
-import { useLocalStorage } from './useLocalStorage';
+import { ReceiptsContext } from './context/ReceiptsContext';
 
 export const Receipts = () => {
-  const [receipts] = useLocalStorage('receipts', []);
+  const { receipts } = useContext(ReceiptsContext);
 
   return (
     <SimpleGrid columns={4} spacing={5}>
