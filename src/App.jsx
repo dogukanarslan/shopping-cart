@@ -1,19 +1,17 @@
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
-import { Box, Container } from '@chakra-ui/react';
-
-import Navbar from './Navbar';
+import { Box } from '@chakra-ui/react';
 import Home from './Home';
 import { Receipts } from './Receipts';
 import { ReceiptDetail } from './ReceiptDetail';
 import CreateReceipt from './CreateReceipt';
+import Sidebar from './components/Sidebar';
 
 function App() {
   return (
     <Router>
-      <Navbar />
-
-      <Box padding="1rem">
-        <Container maxW="container.xl">
+      <Box minH="100vh" bg="gray.100">
+        <Sidebar />
+        <Box ml="60" p="5">
           <Switch>
             <Route exact path="/">
               <Home />
@@ -28,7 +26,7 @@ function App() {
               <Receipts />
             </Route>
           </Switch>
-        </Container>
+        </Box>
       </Box>
     </Router>
   );
