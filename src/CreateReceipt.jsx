@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import {
@@ -15,6 +15,7 @@ import {
   FormControl,
   FormLabel,
 } from '@chakra-ui/react';
+import { ReceiptsContext } from './contexts/ReceiptsContext';
 
 const CreateReceipt = () => {
   const [name, setName] = useState('');
@@ -23,6 +24,8 @@ const CreateReceipt = () => {
   const [itemName, setItemName] = useState('');
   const [itemPrice, setItemPrice] = useState('');
   const [itemQuantity, setItemQuantity] = useState('');
+
+  const { receipts, setReceipts } = useContext(ReceiptsContext);
 
   const history = useHistory('');
 
@@ -46,19 +49,16 @@ const CreateReceipt = () => {
 
   const createReceipt = async (e) => {
     e.preventDefault();
-    const receipts = JSON.parse(localStorage.getItem('receipts') || '[]');
-    localStorage.setItem(
-      'receipts',
-      JSON.stringify([
-        ...receipts,
-        {
-          id: Math.floor(Math.random() * 1000),
-          name,
-          items,
-          created_at: new Date(),
-        },
-      ])
-    );
+
+    setReceipts([
+      ...receipts,
+      {
+        id: Math.floor(Math.random() * 1000),
+        name,
+        items,
+        created_at: new Date(),
+      },
+    ]);
 
     history.push('/receipts');
   };

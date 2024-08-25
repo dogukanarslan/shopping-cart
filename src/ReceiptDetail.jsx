@@ -16,23 +16,21 @@ import {
   Button,
 } from '@chakra-ui/react';
 
-import { getStorageValue } from './useLocalStorage';
 import { formatDate } from './utils';
+import { useContext } from 'react';
+import { ReceiptsContext } from './contexts/ReceiptsContext';
 
 export const ReceiptDetail = () => {
   const { id } = useParams();
   const history = useHistory();
 
-  const receipt = getStorageValue('receipts').find(
-    (receipt) => receipt.id === parseInt(id)
-  );
+  const { receipts, setReceipts } = useContext(ReceiptsContext);
 
-  const { name, created_at, items } = receipt;
+  const receipt = receipts?.find((receipt) => receipt.id === parseInt(id));
 
   const deleteReceipt = (receiptId) => {
-    const receipts = JSON.parse(localStorage.getItem('receipts'));
     const newReceipts = receipts.filter((receipt) => receipt.id !== receiptId);
-    localStorage.setItem('receipts', JSON.stringify(newReceipts));
+    setReceipts(newReceipts);
     history.push('/receipts');
   };
 
@@ -51,15 +49,15 @@ export const ReceiptDetail = () => {
       <Card>
         <CardHeader>
           <Flex>
-            <Heading size="md">{name}</Heading>
+            <Heading size="md">{receipt.name}</Heading>
             <Spacer />
-            <Heading size="md">{formatDate(created_at)}</Heading>
+            <Heading size="md">{formatDate(receipt.created_at)}</Heading>
           </Flex>
         </CardHeader>
 
         <CardBody>
           <Stack divider={<StackDivider />} spacing="4">
-            {items?.map((item) => (
+            {receipt.items?.map((item) => (
               <Box key={item.id}>
                 <Heading size="xs" textTransform="uppercase">
                   {item.name}
@@ -83,7 +81,7 @@ export const ReceiptDetail = () => {
         <StatLabel>Total Price</StatLabel>
         <StatNumber>
           $
-          {items?.reduce((total, item) => {
+          {receipt.items?.reduce((total, item) => {
             return total + item.price * item.quantity;
           }, 0)}
         </StatNumber>
