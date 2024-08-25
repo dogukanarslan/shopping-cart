@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { SimpleGrid } from '@chakra-ui/react';
 
 import ReceiptList from './ReceiptList';
-import { ReceiptsContext } from './context/ReceiptsContext';
+import { ReceiptsContext } from './contexts/ReceiptsContext';
 
 export const Receipts = () => {
   const { receipts } = useContext(ReceiptsContext);
