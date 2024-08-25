@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { ChakraProvider } from '@chakra-ui/react';
 import App from './App';
 import './index.css';
-import { ReceiptsContextProvider } from './context/ReceiptsContext';
+import { ReceiptsContextProvider } from './contexts/ReceiptsContext';
 
 const container = document.getElementById('root');
 const root = createRoot(container);
