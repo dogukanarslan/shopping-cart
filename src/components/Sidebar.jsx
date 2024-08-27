@@ -38,8 +38,7 @@ const Sidebar = () => {
             borderRadius="lg"
             cursor="pointer"
             _hover={{
-              bg: 'gray.400',
-              color: 'white',
+              bg: 'gray.200',
             }}
           >
             <Icon as={link.icon} mr="4" fontSize="16" /> {link.name}
