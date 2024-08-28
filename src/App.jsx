@@ -4,6 +4,7 @@ import Home from './Home';
 import { Receipts } from './Receipts';
 import { ReceiptDetail } from './ReceiptDetail';
 import CreateReceipt from './CreateReceipt';
+import { Products } from './Products';
 import Sidebar from './components/Sidebar';
 
 function App() {
@@ -24,6 +25,9 @@ function App() {
             </Route>
             <Route path="/receipts">
               <Receipts />
+            </Route>
+            <Route path="/products">
+              <Products />
             </Route>
           </Switch>
         </Box>
