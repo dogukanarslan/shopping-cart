@@ -70,19 +70,25 @@ const CreateReceipt = () => {
           <Input
             label="Name"
             value={itemName}
-            onChange={(e) => setItemName(e.target.value)}
+            onChange={(e) => {
+              setItemName(e.target.value);
+            }}
           />
 
           <Input
+            type="number"
             label="Price"
             value={itemPrice}
-            onChange={(num) => setItemPrice(num)}
+            onChange={(e) => setItemPrice(e.target.value)}
           />
 
           <Input
+            type="number"
             label="Quantity"
             value={itemQuantity}
-            onChange={(num) => setItemQuantity(num)}
+            onChange={(e) => {
+              setItemQuantity(e.target.value);
+            }}
           />
 
           <Button type="submit">Add Item</Button>

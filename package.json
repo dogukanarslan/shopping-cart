@@ -1,5 +1,4 @@
 {
-  "homepage": "https://dogukanarslan.github.io/shopping-cart/",
   "name": "shopping-cart",
   "version": "0.1.0",
   "private": true,
@@ -14,7 +13,9 @@
     "vite": "^4.5.0"
   },
   "scripts": {
-    "deploy": "gh-pages -d build",
+    "predeploy": "vite build",
+    "deploy": "gh-pages --dist dist --no-history --branch deploy",
+    "help": "gh-pages --help",
     "start": "vite",
     "build": "vite build",
     "preview": "vite preview",
