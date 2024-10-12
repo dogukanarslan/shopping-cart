@@ -2,15 +2,11 @@ import { useHistory } from 'react-router-dom';
 import {
   Card,
   CardBody,
-  Heading,
-  Text,
   CardHeader,
   CardFooter,
   Button,
-  Box,
-  Stack,
-  StackDivider,
-} from '@chakra-ui/react';
+  Divider,
+} from '@nextui-org/react';
 import { formatDate } from './utils';
 
 const Receipt = ({ receipt }) => {
@@ -19,31 +15,24 @@ const Receipt = ({ receipt }) => {
   return (
     <Card>
       <CardHeader>
-        <Heading size="md">{receipt.name}</Heading>
+        <h1 className="font-bold">{receipt.name}</h1>
       </CardHeader>
+      <Divider />
       <CardBody>
-        <Stack divider={<StackDivider />}>
-          <Box>
-            <Heading size="xs" textTransform="uppercase">
-              Total
-            </Heading>
-            <Text pt="2" fontSize="sm">
-              $
-              {receipt.items.reduce(
-                (total, item) => (total += item.price * item.quantity),
-                0
-              )}
-            </Text>
-          </Box>
-          <Box>
-            <Heading size="xs" textTransform="uppercase">
-              Created At
-            </Heading>
-            <Text pt="2" fontSize="sm">
-              {formatDate(receipt.created_at)}
-            </Text>
-          </Box>
-        </Stack>
+        <div>
+          <h2 className="text-xs">Total</h2>
+          <p>
+            $
+            {receipt.items.reduce(
+              (total, item) => (total += item.price * item.quantity),
+              0
+            )}
+          </p>
+        </div>
+        <div>
+          <h1 className="text-sm">Created At</h1>
+          <p>{formatDate(receipt.created_at)}</p>
+        </div>
       </CardBody>
       <CardFooter>
         <Button onClick={() => history.push(`/receipts/${receipt.id}`)}>

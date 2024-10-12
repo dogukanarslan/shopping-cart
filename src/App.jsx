@@ -1,5 +1,4 @@
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
-import { Box } from '@chakra-ui/react';
 import Home from './Home';
 import { Receipts } from './Receipts';
 import { ReceiptDetail } from './ReceiptDetail';
@@ -10,9 +9,9 @@ import Sidebar from './components/Sidebar';
 function App() {
   return (
     <Router>
-      <Box minH="100vh" bg="gray.100">
+      <div className="h-full">
         <Sidebar />
-        <Box ml="60" p="5">
+        <div className="ml-56 p-4">
           <Switch>
             <Route exact path="/">
               <Home />
@@ -30,8 +29,8 @@ function App() {
               <Products />
             </Route>
           </Switch>
-        </Box>
-      </Box>
+        </div>
+      </div>
     </Router>
   );
 }

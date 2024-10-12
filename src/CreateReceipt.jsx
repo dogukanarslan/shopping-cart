@@ -1,20 +1,7 @@
 import { useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import {
-  Button,
-  Input,
-  Box,
-  NumberInput,
-  NumberInputField,
-  VStack,
-  Text,
-  Card,
-  CardBody,
-  Heading,
-  FormControl,
-  FormLabel,
-} from '@chakra-ui/react';
+import { Button, Input, Card, CardBody } from '@nextui-org/react';
 import { ReceiptsContext } from './contexts/ReceiptsContext';
 
 const CreateReceipt = () => {
@@ -66,73 +53,58 @@ const CreateReceipt = () => {
   return (
     <>
       <form onSubmit={createReceipt}>
-        <FormControl isRequired>
-          <FormLabel>Receipt Name</FormLabel>
-          <Input
-            mb="0.5rem"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-        </FormControl>
+        <Input
+          label="Receipt  Name"
+          mb="0.5rem"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
 
-        <Box display="flex" justifyContent="end">
-          <Button type="submit">Create Receipt</Button>
-        </Box>
+        <Button type="submit" className="my-2">
+          Create Receipt
+        </Button>
       </form>
 
       <form onSubmit={addItem}>
-        <Box mb={2}>
-          <FormControl isRequired>
-            <FormLabel>Name</FormLabel>
-            <Input
-              value={itemName}
-              mb="10px"
-              onChange={(e) => setItemName(e.target.value)}
-            />
-          </FormControl>
+        <div className="space-y-2">
+          <Input
+            label="Name"
+            value={itemName}
+            onChange={(e) => setItemName(e.target.value)}
+          />
 
-          <FormControl isRequired>
-            <FormLabel>Price</FormLabel>
-            <NumberInput
-              mb="10px"
-              value={itemPrice}
-              onChange={(num) => setItemPrice(num)}
-            >
-              <NumberInputField />
-            </NumberInput>
-          </FormControl>
+          <Input
+            label="Price"
+            value={itemPrice}
+            onChange={(num) => setItemPrice(num)}
+          />
 
-          <FormControl isRequired>
-            <FormLabel>Quantity</FormLabel>
-            <NumberInput
-              mb="10px"
-              value={itemQuantity}
-              onChange={(num) => setItemQuantity(num)}
-            >
-              <NumberInputField />
-            </NumberInput>
-          </FormControl>
+          <Input
+            label="Quantity"
+            value={itemQuantity}
+            onChange={(num) => setItemQuantity(num)}
+          />
 
           <Button type="submit">Add Item</Button>
-        </Box>
+        </div>
       </form>
 
-      <Heading size="md">Receipt Items</Heading>
+      <h1>Receipt Items</h1>
       {items.length === 0 ? (
         'No item added'
       ) : (
-        <VStack spacing={2}>
+        <div className="space-y-2">
           {items.map((item) => (
-            <Card key={item.id} w="100%" variant="outline" size="sm">
+            <Card key={item.id}>
               <CardBody>
-                <Heading size="md">{item.name}</Heading>
-                <Text>Price: {item.price}</Text>
-                <Text>Quantity: {item.quantity}</Text>
-                <Text>Total: {item.quantity * item.price}</Text>
+                <h1 className="font-bold">{item.name}</h1>
+                <p>Price: {item.price}</p>
+                <p>Quantity: {item.quantity}</p>
+                <p>Total: {item.quantity * item.price}</p>
               </CardBody>
             </Card>
           ))}
-        </VStack>
+        </div>
       )}
     </>
   );
