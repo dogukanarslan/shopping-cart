@@ -1,5 +1,5 @@
 import { useParams, useHistory } from 'react-router-dom';
-import { Card, CardBody, CardHeader, Button } from '@nextui-org/react';
+import { Button, Divider } from '@nextui-org/react';
 
 import { formatDate } from './utils';
 import { useContext } from 'react';
@@ -21,27 +21,25 @@ export const ReceiptDetail = () => {
 
   return (
     <div>
-      <Card>
-        <CardHeader className="justify-between">
-          <h1 className="font-bold">{receipt.name}</h1>
-          <h2 className="font-bold">{formatDate(receipt.created_at)}</h2>
-        </CardHeader>
+      <h1 className="font-semibold text-2xl">{receipt.name}</h1>
+      <div className="text-sm my-2">{formatDate(receipt.created_at)}</div>
 
-        <CardBody>
-          <div>
-            {receipt.items?.map((item) => (
-              <div key={item.id}>
-                <h4>{item.name}</h4>
-                <p>Quantity: {item.quantity}</p>
-                <p>Price: ${item.price}</p>
-                <p>Total: ${item.quantity * item.price}</p>
-              </div>
-            ))}
-          </div>
-        </CardBody>
-      </Card>
       <div>
-        <h1 className="font-bold">Total Price</h1>
+        <h2 className="text-lg font-semibold">Receipt Items</h2>
+        <Divider/>
+        {receipt.items?.map((item) => (
+          <div key={item.id}>
+            <h4>{item.name}</h4>
+            <p>Quantity: {item.quantity}</p>
+            <p>Price: ${item.price}</p>
+            <p>Total: ${item.quantity * item.price}</p>
+          </div>
+        ))}
+      </div>
+
+      <div className='my-2'>
+        <h2 className="font-semibold text-lg">Total Price</h2>
+        <Divider/>
         <div>
           $
           {receipt.items?.reduce((total, item) => {
