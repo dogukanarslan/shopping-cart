@@ -10,7 +10,7 @@ function App() {
   return (
     <div className="h-full">
       <Sidebar />
-      <div className="ml-56 p-4">
+      <div className="ml-56 p-4 h-full">
         <Switch>
           <Route exact path="/">
             <Home />
