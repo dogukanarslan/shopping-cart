@@ -25,21 +25,22 @@ export const ReceiptDetail = () => {
       <div className="text-sm my-2">{formatDate(receipt.created_at)}</div>
 
       <div>
-        <h2 className="text-lg font-semibold">Receipt Items</h2>
-        <Divider/>
+        <h2 className="font-medium text-neutral-500">Receipt Items</h2>
+        <Divider className="mt-4" />
         {receipt.items?.map((item) => (
-          <div key={item.id}>
-            <h4>{item.name}</h4>
-            <p>Quantity: {item.quantity}</p>
-            <p>Price: ${item.price}</p>
-            <p>Total: ${item.quantity * item.price}</p>
+          <div
+            key={item.id}
+            className="text-small py-4 border-divider border-b"
+          >
+            <h4 className="font-medium">{item.name}</h4>
+            <p>
+              ${item.price} x {item.quantity}
+            </p>
           </div>
         ))}
       </div>
-
-      <div className='my-2'>
-        <h2 className="font-semibold text-lg">Total Price</h2>
-        <Divider/>
+      <div className="my-5 flex items-center gap-x-4 text-sm font-semibold">
+        <h2 className="text-neutral-500">Total</h2>
         <div>
           $
           {receipt.items?.reduce((total, item) => {
