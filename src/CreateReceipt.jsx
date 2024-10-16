@@ -55,7 +55,6 @@ const CreateReceipt = () => {
       <form onSubmit={createReceipt}>
         <Input
           label="Receipt  Name"
-          mb="0.5rem"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
