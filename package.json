@@ -14,7 +14,7 @@
   },
   "scripts": {
     "predeploy": "vite build",
-    "deploy": "gh-pages --dist dist --no-history --branch deploy",
+    "deploy": "gh-pages --dist build --no-history --branch deploy",
     "help": "gh-pages --help",
     "start": "vite",
     "build": "vite build",
