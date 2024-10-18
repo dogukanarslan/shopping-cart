@@ -8,7 +8,11 @@ export function Providers({ children }) {
   const history = useHistory();
 
   return (
-    <NextUIProvider navigate={history.push} className="h-full">
+    <NextUIProvider
+      navigate={history.push}
+      validationBehavior="native"
+      className="h-full"
+    >
       <ProductsContextProvider>
         <ReceiptsContextProvider>{children}</ReceiptsContextProvider>
       </ProductsContextProvider>

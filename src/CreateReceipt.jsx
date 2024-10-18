@@ -72,6 +72,7 @@ const CreateReceipt = () => {
             onChange={(e) => {
               setItemName(e.target.value);
             }}
+            isRequired
           />
 
           <Input
@@ -79,6 +80,7 @@ const CreateReceipt = () => {
             label="Price"
             value={itemPrice}
             onChange={(e) => setItemPrice(e.target.value)}
+            isRequired
           />
 
           <Input
@@ -88,6 +90,7 @@ const CreateReceipt = () => {
             onChange={(e) => {
               setItemQuantity(e.target.value);
             }}
+            isRequired
           />
 
           <Button type="submit">Add Item</Button>
