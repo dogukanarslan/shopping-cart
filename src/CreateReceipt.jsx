@@ -57,6 +57,7 @@ const CreateReceipt = () => {
           label="Receipt  Name"
           value={name}
           onChange={(e) => setName(e.target.value)}
+          isRequired
         />
 
         <Button type="submit" className="my-2">
