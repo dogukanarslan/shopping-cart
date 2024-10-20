@@ -5,6 +5,7 @@ import { ReceiptDetail } from './ReceiptDetail';
 import CreateReceipt from './CreateReceipt';
 import { Products } from './Products';
 import Sidebar from './components/Sidebar';
+import CreateProduct from './CreateProduct';
 
 function App() {
   return (
@@ -23,6 +24,9 @@ function App() {
           </Route>
           <Route path="/receipts">
             <Receipts />
+          </Route>
+          <Route path="/products/create">
+            <CreateProduct />
           </Route>
           <Route path="/products">
             <Products />
