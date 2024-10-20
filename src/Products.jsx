@@ -1,6 +1,7 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { ProductsContext } from './contexts/ProductsContext';
+import Product from './Product';
 
 export const Products = () => {
   const { products } = useContext(ProductsContext);
@@ -13,5 +14,11 @@ export const Products = () => {
     );
   }
 
-  return <div>Products</div>;
+  return (
+    <div className="grid grid-cols-4">
+      {products.map((product) => (
+        <Product key={product.id} product={product} />
+      ))}
+    </div>
+  );
 };

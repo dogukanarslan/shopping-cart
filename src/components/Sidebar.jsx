@@ -1,11 +1,12 @@
 import { Listbox, ListboxItem } from '@nextui-org/react';
-import { FiFile, FiPlusSquare, FiDisc, FiHome } from 'react-icons/fi';
+import { FiFile, FiPlusSquare, FiDisc, FiHome, FiTv } from 'react-icons/fi';
 
 const LinkItems = [
   { name: 'Home', icon: <FiHome />, url: '/' },
   { name: 'Create Receipt', icon: <FiPlusSquare />, url: '/receipts/create' },
   { name: 'Receipts', icon: <FiFile />, url: '/receipts' },
-  { name: 'Products', icon: <FiDisc />, url: '/products' },
+  { name: 'Create Product', icon: <FiDisc />, url: '/products/create' },
+  { name: 'Products', icon: <FiTv />, url: '/products' },
 ];
 
 const Sidebar = () => {
