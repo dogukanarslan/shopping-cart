@@ -1,37 +1,48 @@
 import { useContext, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 
 import { Button, Input, Card, CardBody } from '@nextui-org/react';
 import { ReceiptsContext } from './contexts/ReceiptsContext';
+import { ProductsContext } from './contexts/ProductsContext';
 
 const CreateReceipt = () => {
   const [name, setName] = useState('');
   const [items, setItems] = useState([]);
 
-  const [itemName, setItemName] = useState('');
-  const [itemPrice, setItemPrice] = useState('');
-  const [itemQuantity, setItemQuantity] = useState('');
-
   const { receipts, setReceipts } = useContext(ReceiptsContext);
+  const { products } = useContext(ProductsContext);
 
   const history = useHistory('');
 
-  const addItem = (e) => {
-    e.preventDefault();
-
+  const addItem = (productId, name, price, quantity) => {
     setItems((prev) => [
       ...prev,
       {
         id: Math.random(),
-        name: itemName,
-        price: itemPrice,
-        quantity: itemQuantity,
+        productId,
+        name,
+        price,
+        quantity,
       },
     ]);
+  };
 
-    setItemName('');
-    setItemPrice('');
-    setItemQuantity('');
+  const handleProductClick = (product) => {
+    const isProductAdded = items.some((item) => item.productId === product.id);
+
+    if (isProductAdded) {
+      setItems((prev) =>
+        prev.map((item) => {
+          if (item.productId === product.id) {
+            return { ...item, quantity: item.quantity + 1 };
+          } else {
+            return item;
+          }
+        })
+      );
+    } else {
+      addItem(product.id, product.name, product.price, 1);
+    }
   };
 
   const createReceipt = async (e) => {
@@ -60,61 +71,47 @@ const CreateReceipt = () => {
           isRequired
         />
 
-        <Button type="submit" className="my-2">
+        <div className="my-2">
+          <h4 className="font-medium">Products</h4>
+          <div className="flex gap-2 mb-2">
+            {products.map((product) => (
+              <Button
+                key={product.id}
+                type="button"
+                size="sm"
+                radius="full"
+                onClick={() => handleProductClick(product)}
+              >
+                {product.name}
+              </Button>
+            ))}
+          </div>
+          <Link className="text-sm" to="/products/create">
+            Add new product
+          </Link>
+        </div>
+
+        <h1 className="font-medium">Items</h1>
+        {items.length === 0 ? (
+          'No item added'
+        ) : (
+          <div className="space-y-2">
+            {items.map((item) => (
+              <Card key={item.id}>
+                <CardBody>
+                  <h1 className="font-bold">{item.name}</h1>
+                  <p>Price: {item.price}</p>
+                  <p>Quantity: {item.quantity}</p>
+                  <p>Total: {item.quantity * item.price}</p>
+                </CardBody>
+              </Card>
+            ))}
+          </div>
+        )}
+        <Button type="submit" className="mt-2 flex">
           Create Receipt
         </Button>
       </form>
-
-      <form onSubmit={addItem}>
-        <div className="space-y-2">
-          <Input
-            label="Name"
-            value={itemName}
-            onChange={(e) => {
-              setItemName(e.target.value);
-            }}
-            isRequired
-          />
-
-          <Input
-            type="number"
-            label="Price"
-            value={itemPrice}
-            onChange={(e) => setItemPrice(e.target.value)}
-            isRequired
-          />
-
-          <Input
-            type="number"
-            label="Quantity"
-            value={itemQuantity}
-            onChange={(e) => {
-              setItemQuantity(e.target.value);
-            }}
-            isRequired
-          />
-
-          <Button type="submit">Add Item</Button>
-        </div>
-      </form>
-
-      <h1>Receipt Items</h1>
-      {items.length === 0 ? (
-        'No item added'
-      ) : (
-        <div className="space-y-2">
-          {items.map((item) => (
-            <Card key={item.id}>
-              <CardBody>
-                <h1 className="font-bold">{item.name}</h1>
-                <p>Price: {item.price}</p>
-                <p>Quantity: {item.quantity}</p>
-                <p>Total: {item.quantity * item.price}</p>
-              </CardBody>
-            </Card>
-          ))}
-        </div>
-      )}
     </>
   );
 };
