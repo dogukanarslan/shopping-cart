@@ -1,7 +1,22 @@
-import { Card, CardBody, CardHeader, Divider } from '@nextui-org/react';
+import {
+  Card,
+  CardBody,
+  CardHeader,
+  CardFooter,
+  Divider,
+  Button,
+} from '@nextui-org/react';
 import { formatDate } from './utils';
+import { useContext } from 'react';
+import { ProductsContext } from './contexts/ProductsContext';
 
 const Product = ({ product }) => {
+  const { setProducts } = useContext(ProductsContext);
+
+  const handleDelete = () => {
+    setProducts((prev) => prev.filter((p) => p.id !== product.id));
+  };
+
   return (
     <Card>
       <CardHeader>
@@ -18,6 +33,11 @@ const Product = ({ product }) => {
           <p>{formatDate(product.created_at)}</p>
         </div>
       </CardBody>
+      <CardFooter>
+        <Button color="danger" onClick={handleDelete}>
+          Delete
+        </Button>
+      </CardFooter>
     </Card>
   );
 };
