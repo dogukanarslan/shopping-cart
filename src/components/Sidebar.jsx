@@ -12,8 +12,8 @@ const LinkItems = [
 const Sidebar = () => {
   return (
     <div className="fixed h-full w-56 border-r-1 p-6">
-      <h1 className="font-bold text-2xl mb-4">Receipts</h1>
-      <Listbox variant="faded" aria-label="Sidebar">
+      <h1 className="font-bold text-2xl mb-4 text-center">Receipts</h1>
+      <Listbox variant="faded" aria-label="Sidebar" label="hi" title="hi">
         {LinkItems.map((link) => (
           <ListboxItem key={link.name} href={link.url} textValue="hi">
             <div className="flex items-center">
