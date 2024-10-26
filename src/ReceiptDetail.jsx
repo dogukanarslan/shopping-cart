@@ -48,7 +48,11 @@ export const ReceiptDetail = () => {
           }, 0)}
         </div>
       </div>
-      <Button color="danger" onClick={() => deleteReceipt(receipt.id)}>
+      <Button
+        color="danger"
+        variant="flat"
+        onClick={() => deleteReceipt(receipt.id)}
+      >
         Delete
       </Button>
     </div>
