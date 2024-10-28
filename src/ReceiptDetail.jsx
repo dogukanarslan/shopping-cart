@@ -1,15 +1,17 @@
 import { useParams, useHistory } from 'react-router-dom';
-import { Button, Divider } from '@nextui-org/react';
+import { Button, Divider, useDisclosure } from '@nextui-org/react';
 
 import { formatDate } from './utils';
 import { useContext } from 'react';
 import { ReceiptsContext } from './contexts/ReceiptsContext';
+import EditReceiptModal from './components/EditReceiptModal';
 
 export const ReceiptDetail = () => {
   const { id } = useParams();
   const history = useHistory();
 
   const { receipts, setReceipts } = useContext(ReceiptsContext);
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   const receipt = receipts?.find((receipt) => receipt.id === parseInt(id));
 
@@ -55,6 +57,14 @@ export const ReceiptDetail = () => {
       >
         Delete
       </Button>
+      <Button className="ml-2" variant="flat" onClick={onOpen}>
+        Edit
+      </Button>
+      <EditReceiptModal
+        receipt={receipt}
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+      />
     </div>
   );
 };
