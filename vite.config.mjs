@@ -6,7 +6,7 @@ export default defineConfig({
   // depending on your application, base can also be "/"
   base: '',
   build: {
-    outDir: "build"
+    outDir: 'build',
   },
   plugins: [react(), eslint()],
   server: {

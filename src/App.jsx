@@ -11,7 +11,7 @@ function App() {
   return (
     <div className="h-full">
       <Sidebar />
-      <div className="ml-56 p-4 h-full">
+      <div className="ml-56 h-full p-4">
         <Switch>
           <Route exact path="/">
             <Home />

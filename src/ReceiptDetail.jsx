@@ -23,8 +23,8 @@ export const ReceiptDetail = () => {
 
   return (
     <div>
-      <h1 className="font-semibold text-2xl">{receipt.name}</h1>
-      <div className="text-sm my-2">{formatDate(receipt.created_at)}</div>
+      <h1 className="text-2xl font-semibold">{receipt.name}</h1>
+      <div className="my-2 text-sm">{formatDate(receipt.created_at)}</div>
 
       <div>
         <h2 className="font-medium text-neutral-500">Receipt Items</h2>
@@ -32,7 +32,7 @@ export const ReceiptDetail = () => {
         {receipt.items?.map((item) => (
           <div
             key={item.id}
-            className="text-small py-4 border-divider border-b"
+            className="border-b border-divider py-4 text-small"
           >
             <h4 className="font-medium">{item.name}</h4>
             <p>

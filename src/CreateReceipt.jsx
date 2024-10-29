@@ -73,7 +73,7 @@ const CreateReceipt = () => {
 
         <div className="my-2">
           <h4 className="font-medium">Products</h4>
-          <div className="flex gap-2 mb-2">
+          <div className="mb-2 flex gap-2">
             {products.map((product) => (
               <Button
                 key={product.id}
