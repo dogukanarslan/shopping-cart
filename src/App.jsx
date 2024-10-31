@@ -4,7 +4,6 @@ import { Receipts } from './Receipts';
 import { ReceiptDetail } from './ReceiptDetail';
 import CreateReceipt from './CreateReceipt';
 import { Products } from './Products';
-import Sidebar from './components/Sidebar';
 import CreateProduct from './CreateProduct';
 import {
   Navbar,
@@ -14,7 +13,14 @@ import {
   NavbarMenuItem,
   NavbarMenuToggle,
 } from '@nextui-org/react';
-import { FiFile, FiPlusSquare, FiDisc, FiHome, FiTv } from 'react-icons/fi';
+import {
+  FiFile,
+  FiPlusSquare,
+  FiDisc,
+  FiHome,
+  FiTv,
+  FiShoppingCart,
+} from 'react-icons/fi';
 import { useState } from 'react';
 
 const linkItems = [
@@ -34,10 +40,13 @@ function App() {
         disableAnimation
         maxWidth="full"
         isMenuOpen={isMenuOpen}
+        isBordered
       >
-        <NavbarContent>
-          <NavbarMenuToggle />
-          <NavbarBrand>Receipts</NavbarBrand>
+        <NavbarContent as="li">
+          <NavbarBrand className="items-center gap-3">
+            <FiShoppingCart size={24} />
+            <p className="font-bold uppercase">Receipts</p>
+          </NavbarBrand>
         </NavbarContent>
         <NavbarMenu>
           {linkItems.map((item) => (
@@ -48,6 +57,9 @@ function App() {
             </NavbarMenuItem>
           ))}
         </NavbarMenu>
+        <NavbarContent justify="end">
+          <NavbarMenuToggle />
+        </NavbarContent>
       </Navbar>
       <div className="h-full p-4">
         <Switch>
