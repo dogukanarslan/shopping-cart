@@ -11,8 +11,7 @@ const LinkItems = [
 
 const Sidebar = () => {
   return (
-    <div className="fixed h-full w-56 border-r-1 p-6">
-      <h1 className="mb-4 text-center text-2xl font-bold">Receipts</h1>
+    <div className="fixed hidden h-full w-56 border-r-1 p-6 md:block">
       <Listbox variant="faded" aria-label="Sidebar" label="hi" title="hi">
         {LinkItems.map((link) => (
           <ListboxItem key={link.name} href={link.url} textValue="hi">

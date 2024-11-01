@@ -5,6 +5,7 @@ import { ReceiptDetail } from './ReceiptDetail';
 import CreateReceipt from './CreateReceipt';
 import { Products } from './Products';
 import CreateProduct from './CreateProduct';
+import Sidebar from './components/Sidebar';
 import {
   Navbar,
   NavbarBrand,
@@ -57,11 +58,12 @@ function App() {
             </NavbarMenuItem>
           ))}
         </NavbarMenu>
-        <NavbarContent justify="end">
+        <NavbarContent className="md:hidden" justify="end">
           <NavbarMenuToggle />
         </NavbarContent>
       </Navbar>
-      <div className="h-full p-4">
+      <Sidebar />
+      <div className="h-full p-4 md:ml-56">
         <Switch>
           <Route exact path="/">
             <Home />
