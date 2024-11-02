@@ -5,21 +5,20 @@ import { formatDate } from './utils';
 import { useContext } from 'react';
 import { ReceiptsContext } from './contexts/ReceiptsContext';
 import EditReceiptModal from './components/EditReceiptModal';
+import DeleteReceiptModal from './components/DeleteReceiptModal';
 
 export const ReceiptDetail = () => {
   const { id } = useParams();
-  const history = useHistory();
 
-  const { receipts, setReceipts } = useContext(ReceiptsContext);
+  const { receipts } = useContext(ReceiptsContext);
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
+  const {
+    isOpen: isDeleteOpen,
+    onOpen: onDeleteOpen,
+    onOpenChange: onDeleteOpenChange,
+  } = useDisclosure();
 
   const receipt = receipts?.find((receipt) => receipt.id === parseInt(id));
-
-  const deleteReceipt = (receiptId) => {
-    const newReceipts = receipts.filter((receipt) => receipt.id !== receiptId);
-    setReceipts(newReceipts);
-    history.push('/receipts');
-  };
 
   return (
     <div>
@@ -50,11 +49,7 @@ export const ReceiptDetail = () => {
           }, 0)}
         </div>
       </div>
-      <Button
-        color="danger"
-        variant="flat"
-        onClick={() => deleteReceipt(receipt.id)}
-      >
+      <Button color="danger" variant="flat" onClick={onDeleteOpen}>
         Delete
       </Button>
       <Button className="ml-2" variant="flat" onClick={onOpen}>
@@ -64,6 +59,11 @@ export const ReceiptDetail = () => {
         receipt={receipt}
         isOpen={isOpen}
         onOpenChange={onOpenChange}
+      />
+      <DeleteReceiptModal
+        receipt={receipt}
+        isOpen={isDeleteOpen}
+        onOpenChange={onDeleteOpenChange}
       />
     </div>
   );
