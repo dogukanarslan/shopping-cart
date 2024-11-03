@@ -1,4 +1,4 @@
-import { useParams, useHistory } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { Button, Divider, useDisclosure } from '@nextui-org/react';
 
 import { formatDate } from './utils';
