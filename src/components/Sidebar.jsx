@@ -1,5 +1,5 @@
 import { Listbox, ListboxItem } from '@nextui-org/react';
-import { FiFile, FiPlusSquare, FiDisc, FiHome, FiTv } from 'react-icons/fi';
+import { FiDisc, FiFile, FiHome, FiPlusSquare, FiTv } from 'react-icons/fi';
 
 const LinkItems = [
   { name: 'Home', icon: <FiHome />, url: '/' },

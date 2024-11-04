@@ -2,10 +2,10 @@ import { useContext } from 'react';
 import {
   Button,
   Modal,
-  ModalContent,
-  ModalHeader,
   ModalBody,
+  ModalContent,
   ModalFooter,
+  ModalHeader,
 } from '@nextui-org/react';
 import { useHistory } from 'react-router-dom';
 
