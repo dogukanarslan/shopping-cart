@@ -1,12 +1,12 @@
 import { useContext, useState } from 'react';
 import {
   Button,
-  Modal,
-  ModalContent,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
   Input,
+  Modal,
+  ModalBody,
+  ModalContent,
+  ModalFooter,
+  ModalHeader,
 } from '@nextui-org/react';
 
 import { ProductsContext } from '../contexts/ProductsContext';

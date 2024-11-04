@@ -1,4 +1,4 @@
-import { Route, Switch, Link } from 'react-router-dom';
+import { Link, Route, Switch } from 'react-router-dom';
 import Home from './Home';
 import { Receipts } from './Receipts';
 import { ReceiptDetail } from './ReceiptDetail';
@@ -15,12 +15,12 @@ import {
   NavbarMenuToggle,
 } from '@nextui-org/react';
 import {
-  FiFile,
-  FiPlusSquare,
   FiDisc,
+  FiFile,
   FiHome,
-  FiTv,
+  FiPlusSquare,
   FiShoppingCart,
+  FiTv,
 } from 'react-icons/fi';
 import { useState } from 'react';
 

@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react';
-import { useHistory, Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
-import { Button, Input, Card, CardBody } from '@nextui-org/react';
+import { Button, Card, CardBody, Input } from '@nextui-org/react';
 import { ReceiptsContext } from './contexts/ReceiptsContext';
 import { ProductsContext } from './contexts/ProductsContext';
 
