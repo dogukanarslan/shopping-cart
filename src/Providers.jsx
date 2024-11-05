@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom';
 
 import { ReceiptsContextProvider } from './contexts/ReceiptsContext';
 import { ProductsContextProvider } from './contexts/ProductsContext';
+import { AuthContextProvider } from './contexts/AuthContext';
 
 export function Providers({ children }) {
   const history = useHistory();
@@ -13,9 +14,11 @@ export function Providers({ children }) {
       validationBehavior="native"
       className="h-full"
     >
-      <ProductsContextProvider>
-        <ReceiptsContextProvider>{children}</ReceiptsContextProvider>
-      </ProductsContextProvider>
+      <AuthContextProvider>
+        <ProductsContextProvider>
+          <ReceiptsContextProvider>{children}</ReceiptsContextProvider>
+        </ProductsContextProvider>
+      </AuthContextProvider>
     </NextUIProvider>
   );
 }
