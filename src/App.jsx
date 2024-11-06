@@ -7,9 +7,11 @@ import { Products } from './Products';
 import CreateProduct from './CreateProduct';
 import Sidebar from './components/Sidebar';
 import {
+  Button,
   Navbar,
   NavbarBrand,
   NavbarContent,
+  NavbarItem,
   NavbarMenu,
   NavbarMenuItem,
   NavbarMenuToggle,
@@ -18,11 +20,13 @@ import {
   FiDisc,
   FiFile,
   FiHome,
+  FiLogOut,
   FiPlusSquare,
   FiShoppingCart,
   FiTv,
 } from 'react-icons/fi';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { AuthContext } from './contexts/AuthContext';
 
 const linkItems = [
   { name: 'Home', icon: <FiHome />, url: '/' },
@@ -34,6 +38,8 @@ const linkItems = [
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { username } = useContext(AuthContext);
+
   return (
     <div className="h-full">
       <Navbar
@@ -58,6 +64,16 @@ function App() {
             </NavbarMenuItem>
           ))}
         </NavbarMenu>
+        {username && (
+          <NavbarContent justify="end">
+            <NavbarItem>
+              {username}{' '}
+              <Button iconOnly variant="light">
+                <FiLogOut />
+              </Button>
+            </NavbarItem>
+          </NavbarContent>
+        )}
         <NavbarContent className="md:hidden" justify="end">
           <NavbarMenuToggle />
         </NavbarContent>
