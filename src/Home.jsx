@@ -1,12 +1,12 @@
-import { useContext } from 'react';
-import { FiFile, FiTv } from 'react-icons/fi';
-import { ReceiptsContext } from './contexts/ReceiptsContext';
 import { Card, CardBody } from '@nextui-org/react';
-import { ProductsContext } from './contexts/ProductsContext';
+import { FiFile, FiTv } from 'react-icons/fi';
+
+import { useReceiptsContext } from './contexts/ReceiptsContext';
+import { useProductsContext } from './contexts/ProductsContext';
 
 const Home = () => {
-  const { receipts } = useContext(ReceiptsContext);
-  const { products } = useContext(ProductsContext);
+  const { receipts } = useReceiptsContext();
+  const { products } = useProductsContext();
 
   return (
     <div className="space-y-2">

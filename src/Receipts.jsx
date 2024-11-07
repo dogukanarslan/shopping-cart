@@ -1,11 +1,10 @@
-import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
 import ReceiptList from './ReceiptList';
-import { ReceiptsContext } from './contexts/ReceiptsContext';
+import { useReceiptsContext } from './contexts/ReceiptsContext';
 
 export const Receipts = () => {
-  const { receipts } = useContext(ReceiptsContext);
+  const { receipts } = useReceiptsContext();
 
   if (receipts.length === 0) {
     return (
