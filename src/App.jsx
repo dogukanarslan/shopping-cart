@@ -25,8 +25,8 @@ import {
   FiShoppingCart,
   FiTv,
 } from 'react-icons/fi';
-import { useContext, useState } from 'react';
-import { AuthContext } from './contexts/AuthContext';
+import { useState } from 'react';
+import { useAuthContext } from './contexts/AuthContext';
 
 const linkItems = [
   { name: 'Home', icon: <FiHome />, url: '/' },
@@ -38,7 +38,7 @@ const linkItems = [
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { username } = useContext(AuthContext);
+  const { username } = useAuthContext();
 
   return (
     <div className="h-full">

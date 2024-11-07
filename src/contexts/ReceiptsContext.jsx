@@ -1,8 +1,8 @@
-import { createContext } from 'react';
+import { createContext, useContext } from 'react';
 
 import { useLocalStorage } from '../useLocalStorage';
 
-export const ReceiptsContext = createContext();
+const ReceiptsContext = createContext();
 
 export const ReceiptsContextProvider = (props) => {
   const { children } = props;
@@ -15,3 +15,5 @@ export const ReceiptsContextProvider = (props) => {
     </ReceiptsContext.Provider>
   );
 };
+
+export const useReceiptsContext = () => useContext(ReceiptsContext);

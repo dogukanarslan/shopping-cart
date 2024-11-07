@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import {
   Button,
   Input,
@@ -9,14 +9,14 @@ import {
   ModalHeader,
 } from '@nextui-org/react';
 
-import { ReceiptsContext } from '../contexts/ReceiptsContext';
+import { useReceiptsContext } from '../contexts/ReceiptsContext';
 
 const EditReceiptModal = (props) => {
   const { receipt, isOpen, onOpenChange } = props;
 
   const [name, setName] = useState(receipt.name);
 
-  const { setReceipts } = useContext(ReceiptsContext);
+  const { setReceipts } = useReceiptsContext();
 
   const handleEdit = () => {
     const newReceipt = { ...receipt, name };

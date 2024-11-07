@@ -1,7 +1,7 @@
-import { createContext } from 'react';
+import { createContext, useContext } from 'react';
 import { useLocalStorage } from '../useLocalStorage';
 
-export const ProductsContext = createContext();
+const ProductsContext = createContext();
 
 export const ProductsContextProvider = ({ children }) => {
   const [products, setProducts] = useLocalStorage('products', []);
@@ -12,3 +12,5 @@ export const ProductsContextProvider = ({ children }) => {
     </ProductsContext.Provider>
   );
 };
+
+export const useProductsContext = () => useContext(ProductsContext);

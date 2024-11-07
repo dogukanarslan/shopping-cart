@@ -8,13 +8,12 @@ import {
   useDisclosure,
 } from '@nextui-org/react';
 import { formatDate } from './utils';
-import { useContext } from 'react';
-import { ProductsContext } from './contexts/ProductsContext';
+import { useProductsContext } from './contexts/ProductsContext';
 import EditProductModal from './components/EditProductModal';
 
 const Product = ({ product }) => {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-  const { setProducts } = useContext(ProductsContext);
+  const { setProducts } = useProductsContext();
 
   const handleDelete = () => {
     setProducts((prev) => prev.filter((p) => p.id !== product.id));

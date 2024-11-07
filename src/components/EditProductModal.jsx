@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import {
   Button,
   Input,
@@ -9,7 +9,7 @@ import {
   ModalHeader,
 } from '@nextui-org/react';
 
-import { ProductsContext } from '../contexts/ProductsContext';
+import { useProductsContext } from '../contexts/ProductsContext';
 
 const EditProductModal = (props) => {
   const { product, isOpen, onOpenChange } = props;
@@ -17,7 +17,7 @@ const EditProductModal = (props) => {
   const [name, setName] = useState(product.name);
   const [price, setPrice] = useState(product.price);
 
-  const { setProducts } = useContext(ProductsContext);
+  const { setProducts } = useProductsContext();
 
   const handleEdit = () => {
     const newProduct = { ...product, price, name };

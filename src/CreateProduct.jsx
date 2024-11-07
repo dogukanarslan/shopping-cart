@@ -1,14 +1,14 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { Button, Input } from '@nextui-org/react';
-import { ProductsContext } from './contexts/ProductsContext';
+import { useProductsContext } from './contexts/ProductsContext';
 
 const CreateProduct = () => {
   const [name, setName] = useState('');
   const [price, setPrice] = useState('');
 
-  const { setProducts } = useContext(ProductsContext);
+  const { setProducts } = useProductsContext();
 
   const history = useHistory('');
 

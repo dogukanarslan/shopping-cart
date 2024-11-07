@@ -1,10 +1,9 @@
-import { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { ProductsContext } from './contexts/ProductsContext';
+import { useProductsContext } from './contexts/ProductsContext';
 import Product from './Product';
 
 export const Products = () => {
-  const { products } = useContext(ProductsContext);
+  const { products } = useProductsContext();
   if (products.length === 0) {
     return (
       <div>

@@ -1,16 +1,16 @@
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
-
 import { Button, Card, CardBody, Input } from '@nextui-org/react';
-import { ReceiptsContext } from './contexts/ReceiptsContext';
-import { ProductsContext } from './contexts/ProductsContext';
+
+import { useReceiptsContext } from './contexts/ReceiptsContext';
+import { useProductsContext } from './contexts/ProductsContext';
 
 const CreateReceipt = () => {
   const [name, setName] = useState('');
   const [items, setItems] = useState([]);
 
-  const { receipts, setReceipts } = useContext(ReceiptsContext);
-  const { products } = useContext(ProductsContext);
+  const { receipts, setReceipts } = useReceiptsContext();
+  const { products } = useProductsContext();
 
   const history = useHistory('');
 

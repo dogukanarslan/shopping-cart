@@ -1,4 +1,3 @@
-import { useContext } from 'react';
 import {
   Button,
   Modal,
@@ -9,12 +8,12 @@ import {
 } from '@nextui-org/react';
 import { useHistory } from 'react-router-dom';
 
-import { ReceiptsContext } from '../contexts/ReceiptsContext';
+import { useReceiptsContext } from '../contexts/ReceiptsContext';
 
 const DeleteReceiptModal = (props) => {
   const { receipt, isOpen, onOpenChange } = props;
 
-  const { setReceipts } = useContext(ReceiptsContext);
+  const { setReceipts } = useReceiptsContext();
 
   const history = useHistory();
 
