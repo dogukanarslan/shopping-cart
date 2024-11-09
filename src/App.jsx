@@ -59,7 +59,9 @@ function App() {
           {linkItems.map((item) => (
             <NavbarMenuItem key={item.name}>
               <Link to={item.url} onClick={() => setIsMenuOpen(false)}>
-                {item.name}
+                <div className="flex items-center">
+                  <div className="mr-2">{item.icon}</div> {item.name}
+                </div>
               </Link>
             </NavbarMenuItem>
           ))}
