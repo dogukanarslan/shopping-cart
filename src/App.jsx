@@ -49,7 +49,7 @@ function App() {
         isMenuOpen={isMenuOpen}
         isBordered
       >
-        <NavbarContent as="li">
+        <NavbarContent>
           <NavbarBrand className="items-center gap-3">
             <FiShoppingCart size={24} />
             <p className="font-bold uppercase">Receipts</p>
@@ -63,15 +63,13 @@ function App() {
               </Link>
             </NavbarMenuItem>
           ))}
+          <Button fullWidth startContent={<FiLogOut />}>
+            Sign out
+          </Button>
         </NavbarMenu>
         {username && (
-          <NavbarContent justify="end">
-            <NavbarItem>
-              {username}{' '}
-              <Button iconOnly variant="light">
-                <FiLogOut />
-              </Button>
-            </NavbarItem>
+          <NavbarContent justify="center">
+            <NavbarItem>{username}</NavbarItem>
           </NavbarContent>
         )}
         <NavbarContent className="md:hidden" justify="end">

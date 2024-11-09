@@ -1,5 +1,12 @@
-import { Listbox, ListboxItem } from '@nextui-org/react';
-import { FiDisc, FiFile, FiHome, FiPlusSquare, FiTv } from 'react-icons/fi';
+import { Button, Listbox, ListboxItem } from '@nextui-org/react';
+import {
+  FiDisc,
+  FiFile,
+  FiHome,
+  FiLogOut,
+  FiPlusSquare,
+  FiTv,
+} from 'react-icons/fi';
 
 const LinkItems = [
   { name: 'Home', icon: <FiHome />, url: '/' },
@@ -21,6 +28,7 @@ const Sidebar = () => {
           </ListboxItem>
         ))}
       </Listbox>
+      <Button fullWidth startContent={<FiLogOut />}>Sign out</Button>
     </div>
   );
 };
