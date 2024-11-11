@@ -41,7 +41,7 @@ function App() {
   const { username } = useAuthContext();
 
   return (
-    <div className="h-full">
+    <div className="flex h-full flex-col">
       <Navbar
         onMenuOpenChange={setIsMenuOpen}
         disableAnimation
