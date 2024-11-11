@@ -43,6 +43,7 @@ function App() {
   return (
     <div className="flex h-full flex-col">
       <Navbar
+        className="md:hidden"
         onMenuOpenChange={setIsMenuOpen}
         disableAnimation
         maxWidth="full"
