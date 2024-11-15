@@ -1,4 +1,4 @@
-import { Button, Listbox, ListboxItem } from '@nextui-org/react';
+import { Button, Link, Listbox, ListboxItem } from '@nextui-org/react';
 import {
   FiDisc,
   FiFile,
@@ -23,10 +23,12 @@ const Sidebar = () => {
   return (
     <div className="fixed hidden h-full w-56 border-r-1 p-6 md:flex md:flex-col md:justify-between">
       <div>
-        <div className="my-4 flex items-center gap-2">
-          <FiShoppingCart size={24} />
-          <p className="font-bold uppercase">Receipts</p>
-        </div>
+        <Link to="/" className="text-color-black">
+          <div className="my-4 flex items-center gap-2">
+            <FiShoppingCart size={24} />
+            <p className="font-bold uppercase">Receipts</p>
+          </div>
+        </Link>
         <Listbox variant="faded" aria-label="Sidebar" label="hi" title="hi">
           {LinkItems.map((link) => (
             <ListboxItem key={link.name} href={link.url} textValue="hi">
