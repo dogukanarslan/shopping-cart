@@ -20,8 +20,15 @@ export const AuthContextProvider = (props) => {
     }
   };
 
+  const signOut = () => {
+    document.cookie = `username=;max-age=-1`;
+    history.push('/signin');
+  };
+
   return (
-    <AuthContext.Provider value={{ signIn }}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={{ signIn, signOut }}>
+      {children}
+    </AuthContext.Provider>
   );
 };
 
