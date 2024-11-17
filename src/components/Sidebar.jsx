@@ -19,7 +19,7 @@ const LinkItems = [
 ];
 
 const Sidebar = () => {
-  const { username } = useAuthContext();
+  const { username, signOut } = useAuthContext();
   return (
     <div className="fixed hidden h-full w-56 border-r-1 p-6 md:flex md:flex-col md:justify-between">
       <div>
@@ -41,7 +41,7 @@ const Sidebar = () => {
       </div>
       <div>
         <h4 className="my-2 text-center">{username}</h4>
-        <Button fullWidth startContent={<FiLogOut />}>
+        <Button fullWidth startContent={<FiLogOut />} onClick={signOut}>
           Sign out
         </Button>
       </div>
