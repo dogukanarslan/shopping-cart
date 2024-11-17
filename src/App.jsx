@@ -6,6 +6,7 @@ import CreateReceipt from './CreateReceipt';
 import { Products } from './Products';
 import CreateProduct from './CreateProduct';
 import Sidebar from './components/Sidebar';
+import { SignIn } from './SignIn';
 import {
   Button,
   Navbar,
@@ -84,6 +85,9 @@ function App() {
         <Switch>
           <Route exact path="/">
             <Home />
+          </Route>
+          <Route path="/signin">
+            <SignIn />
           </Route>
           <Route path="/receipts/create">
             <CreateReceipt />
