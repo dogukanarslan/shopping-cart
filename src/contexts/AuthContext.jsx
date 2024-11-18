@@ -25,8 +25,20 @@ export const AuthContextProvider = (props) => {
     history.push('/signin');
   };
 
+  const signUp = (username, password) => {
+    document.cookie = `username=${username}`;
+    const user = users.find((user) => user.username === username);
+
+    if (!user) {
+      document.cookie = `username=${username}`;
+      setUsers((prev) => [...prev, { username, password }]);
+    } else {
+      alert('This user already signed up');
+    }
+  };
+
   return (
-    <AuthContext.Provider value={{ signIn, signOut }}>
+    <AuthContext.Provider value={{ signUp, signIn, signOut }}>
       {children}
     </AuthContext.Provider>
   );
