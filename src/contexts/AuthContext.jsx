@@ -1,4 +1,4 @@
-import { createContext, useContext } from 'react';
+import { createContext, useContext, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { useLocalStorage } from '../hooks/useLocalStorage';
@@ -9,6 +9,8 @@ export const AuthContextProvider = (props) => {
   const { children } = props;
 
   const [users, setUsers] = useLocalStorage('users', []);
+  const [username, setUsername] = useState(null);
+
   const history = useHistory();
 
   const signIn = (username, password) => {
@@ -16,12 +18,14 @@ export const AuthContextProvider = (props) => {
 
     if (user && user.password === parseInt(password)) {
       document.cookie = `username=${username}`;
+      setUsername(username);
       history.push('/');
     }
   };
 
   const signOut = () => {
     document.cookie = `username=;max-age=-1`;
+    setUsername(null);
     history.push('/signin');
   };
 
@@ -32,13 +36,14 @@ export const AuthContextProvider = (props) => {
     if (!user) {
       document.cookie = `username=${username}`;
       setUsers((prev) => [...prev, { username, password }]);
+      setUsername(username);
     } else {
       alert('This user already signed up');
     }
   };
 
   return (
-    <AuthContext.Provider value={{ signUp, signIn, signOut }}>
+    <AuthContext.Provider value={{ signUp, signIn, signOut, username }}>
       {children}
     </AuthContext.Provider>
   );
