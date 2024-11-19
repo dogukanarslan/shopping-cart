@@ -40,10 +40,23 @@ const Sidebar = () => {
         </Listbox>
       </div>
       <div>
-        <h4 className="my-2 text-center">{username}</h4>
-        <Button fullWidth startContent={<FiLogOut />} onClick={signOut}>
-          Sign out
-        </Button>
+        {!username ? (
+          <div className="flex flex-col gap-2">
+            <Button as={Link} href="/signin">
+              Sign in
+            </Button>
+            <Button as={Link} href="/signup">
+              Sign up
+            </Button>
+          </div>
+        ) : (
+          <>
+            <h4 className="my-2 text-center">{username}</h4>
+            <Button fullWidth startContent={<FiLogOut />} onClick={signOut}>
+              Sign out
+            </Button>
+          </>
+        )}
       </div>
     </div>
   );
