@@ -5,7 +5,6 @@ import { ReceiptDetail } from './ReceiptDetail';
 import CreateReceipt from './CreateReceipt';
 import { Products } from './Products';
 import CreateProduct from './CreateProduct';
-import Sidebar from './components/Sidebar';
 import { SignIn } from './SignIn';
 import { SignUp } from './SignUp';
 import {
@@ -29,6 +28,7 @@ import {
 } from 'react-icons/fi';
 import { useState } from 'react';
 import { useAuthContext } from './contexts/AuthContext';
+import { PrivateRoutes } from './components/PrivateRoutes';
 
 const linkItems = [
   { name: 'Home', icon: <FiHome />, url: '/' },
@@ -81,33 +81,34 @@ function App() {
           <NavbarMenuToggle />
         </NavbarContent>
       </Navbar>
-      <Sidebar />
-      <div className="h-full p-4 md:ml-56">
+      <div className="h-full">
         <Switch>
-          <Route exact path="/">
-            <Home />
-          </Route>
           <Route path="/signin">
             <SignIn />
           </Route>
           <Route path="/signup">
             <SignUp />
           </Route>
-          <Route path="/receipts/create">
-            <CreateReceipt />
-          </Route>
-          <Route path="/receipts/:id">
-            <ReceiptDetail />
-          </Route>
-          <Route path="/receipts">
-            <Receipts />
-          </Route>
-          <Route path="/products/create">
-            <CreateProduct />
-          </Route>
-          <Route path="/products">
-            <Products />
-          </Route>
+          <PrivateRoutes isAuthenticated={username}>
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route path="/receipts/create">
+              <CreateReceipt />
+            </Route>
+            <Route path="/receipts/:id">
+              <ReceiptDetail />
+            </Route>
+            <Route path="/receipts">
+              <Receipts />
+            </Route>
+            <Route path="/products/create">
+              <CreateProduct />
+            </Route>
+            <Route path="/products">
+              <Products />
+            </Route>
+          </PrivateRoutes>
         </Switch>
       </div>
     </div>

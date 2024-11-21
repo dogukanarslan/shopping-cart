@@ -16,27 +16,32 @@ export const SignIn = () => {
   };
 
   return (
-    <>
-      <form onSubmit={handleSubmit} className="space-y-2">
-        <h1>Sign In</h1>
-        <Input
-          label="Username"
-          value={username}
-          required
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <Input
-          type="password"
-          label="Password"
-          value={password}
-          required
-          onChange={(e) => setPassword(e.target.value)}
-        />
-        <Button type="submit">Sign in</Button>
-      </form>
-      <div className="mt-2">
-        <Link to="/signup">Create an account</Link>
+    <div className="flex h-full items-center justify-center">
+      <div className="w-1/4">
+        <form
+          onSubmit={handleSubmit}
+          className="space-y-2 rounded bg-gray-50 p-10"
+        >
+          <h1>Sign In</h1>
+          <Input
+            label="Username"
+            value={username}
+            required
+            onChange={(e) => setUsername(e.target.value)}
+          />
+          <Input
+            type="password"
+            label="Password"
+            value={password}
+            required
+            onChange={(e) => setPassword(e.target.value)}
+          />
+          <Button type="submit">Sign in</Button>
+        </form>
+        <div className="mt-2">
+          <Link to="/signup">Create an account</Link>
+        </div>
       </div>
-    </>
+    </div>
   );
 };

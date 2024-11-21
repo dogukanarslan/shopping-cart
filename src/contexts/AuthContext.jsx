@@ -5,11 +5,17 @@ import { useLocalStorage } from '../hooks/useLocalStorage';
 
 const AuthContext = createContext();
 
+const cookie = document.cookie
+  .split('; ')
+  .find((cookie) => cookie.includes('username'));
+
+const userCookie = cookie?.substring(cookie.indexOf('=') + 1);
+
 export const AuthContextProvider = (props) => {
   const { children } = props;
 
   const [users, setUsers] = useLocalStorage('users', []);
-  const [username, setUsername] = useState(null);
+  const [username, setUsername] = useState(userCookie || null);
 
   const history = useHistory();
 

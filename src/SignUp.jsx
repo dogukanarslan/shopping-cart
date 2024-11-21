@@ -14,22 +14,27 @@ export const SignUp = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-2">
-      <h1>Sign Up</h1>
-      <Input
-        label="Username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-        required
-      />
-      <Input
-        label="Password"
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        required
-      />
-      <Button type="submit">Sign up</Button>
-    </form>
+    <div className="flex h-full items-center justify-center">
+      <form
+        onSubmit={handleSubmit}
+        className="w-1/4 space-y-2 rounded bg-gray-50 p-10"
+      >
+        <h1>Sign Up</h1>
+        <Input
+          label="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          required
+        />
+        <Input
+          label="Password"
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required
+        />
+        <Button type="submit">Sign up</Button>
+      </form>
+    </div>
   );
 };
