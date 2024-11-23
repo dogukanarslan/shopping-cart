@@ -12,7 +12,7 @@ const CreateReceipt = () => {
   const { receipts, setReceipts } = useReceiptsContext();
   const { products } = useProductsContext();
 
-  const history = useHistory('');
+  const history = useHistory();
 
   const addItem = (productId, name, price, quantity) => {
     setItems((prev) => [
