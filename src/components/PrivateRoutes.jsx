@@ -1,4 +1,4 @@
-import { Redirect } from 'react-router-dom';
+import { Redirect, Switch } from 'react-router-dom';
 import Sidebar from './Sidebar';
 
 export const PrivateRoutes = (props) => {
@@ -11,7 +11,9 @@ export const PrivateRoutes = (props) => {
   return (
     <>
       <Sidebar />
-      <div className="ml-56 p-4">{children}</div>
+      <div className="ml-56 p-4">
+        <Switch>{children}</Switch>
+      </div>
     </>
   );
 };

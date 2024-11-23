@@ -82,34 +82,32 @@ function App() {
         </NavbarContent>
       </Navbar>
       <div className="h-full">
-        <Switch>
-          <Route path="/signin">
-            <SignIn />
+        <Route path="/signin">
+          <SignIn />
+        </Route>
+        <Route path="/signup">
+          <SignUp />
+        </Route>
+        <PrivateRoutes isAuthenticated={username}>
+          <Route exact path="/">
+            <Home />
           </Route>
-          <Route path="/signup">
-            <SignUp />
+          <Route path="/receipts/create">
+            <CreateReceipt />
           </Route>
-          <PrivateRoutes isAuthenticated={username}>
-            <Route exact path="/">
-              <Home />
-            </Route>
-            <Route path="/receipts/create">
-              <CreateReceipt />
-            </Route>
-            <Route path="/receipts/:id">
-              <ReceiptDetail />
-            </Route>
-            <Route path="/receipts">
-              <Receipts />
-            </Route>
-            <Route path="/products/create">
-              <CreateProduct />
-            </Route>
-            <Route path="/products">
-              <Products />
-            </Route>
-          </PrivateRoutes>
-        </Switch>
+          <Route path="/receipts/:id">
+            <ReceiptDetail />
+          </Route>
+          <Route path="/receipts">
+            <Receipts />
+          </Route>
+          <Route path="/products/create">
+            <CreateProduct />
+          </Route>
+          <Route path="/products">
+            <Products />
+          </Route>
+        </PrivateRoutes>
       </div>
     </div>
   );
