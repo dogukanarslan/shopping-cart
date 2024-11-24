@@ -1,21 +1,17 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { useLocalStorage } from '../hooks/useLocalStorage';
 
+const SECRET = 'SECRET';
+
 const AuthContext = createContext();
-
-const cookie = document.cookie
-  .split('; ')
-  .find((cookie) => cookie.includes('username'));
-
-const userCookie = cookie?.substring(cookie.indexOf('=') + 1);
 
 export const AuthContextProvider = (props) => {
   const { children } = props;
 
   const [users, setUsers] = useLocalStorage('users', []);
-  const [username, setUsername] = useState(userCookie || null);
+  const [username, setUsername] = useLocalStorage('username', '');
 
   const history = useHistory();
 
@@ -23,7 +19,7 @@ export const AuthContextProvider = (props) => {
     const user = users.find((user) => user.username === username);
 
     if (user && user.password === parseInt(password)) {
-      document.cookie = `username=${username}`;
+      document.cookie = `token=${SECRET}`;
       setUsername(username);
       history.push('/');
     }
@@ -36,11 +32,10 @@ export const AuthContextProvider = (props) => {
   };
 
   const signUp = (username, password) => {
-    document.cookie = `username=${username}`;
     const user = users.find((user) => user.username === username);
 
     if (!user) {
-      document.cookie = `username=${username}`;
+      document.cookie = `token=${SECRET}`;
       setUsers((prev) => [...prev, { username, password }]);
       setUsername(username);
     } else {
