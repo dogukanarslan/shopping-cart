@@ -23,7 +23,7 @@ const Sidebar = () => {
   return (
     <div className="fixed hidden h-full w-56 border-r-1 p-6 md:flex md:flex-col md:justify-between">
       <div>
-        <Link to="/" className="text-color-black">
+        <Link href="/" className="text-color-black">
           <div className="my-4 flex items-center gap-2">
             <FiShoppingCart size={24} />
             <p className="font-bold uppercase">Receipts</p>
