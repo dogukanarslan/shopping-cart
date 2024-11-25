@@ -12,6 +12,7 @@ export const AuthContextProvider = (props) => {
 
   const [users, setUsers] = useLocalStorage('users', []);
   const [username, setUsername] = useLocalStorage('username', '');
+  const [token, setToken] = useLocalStorage('token', '');
 
   const history = useHistory();
 
@@ -19,14 +20,14 @@ export const AuthContextProvider = (props) => {
     const user = users.find((user) => user.username === username);
 
     if (user && user.password === parseInt(password)) {
-      document.cookie = `token=${SECRET}`;
+      setToken(SECRET);
       setUsername(username);
       history.push('/');
     }
   };
 
   const signOut = () => {
-    document.cookie = `username=;max-age=-1`;
+    setToken(null);
     setUsername(null);
     history.push('/signin');
   };
@@ -35,8 +36,8 @@ export const AuthContextProvider = (props) => {
     const user = users.find((user) => user.username === username);
 
     if (!user) {
-      document.cookie = `token=${SECRET}`;
       setUsers((prev) => [...prev, { username, password }]);
+      setToken(SECRET);
       setUsername(username);
     } else {
       alert('This user already signed up');
