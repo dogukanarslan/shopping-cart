@@ -40,7 +40,7 @@ const linkItems = [
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { username } = useAuthContext();
+  const { username, token } = useAuthContext();
 
   return (
     <div className="flex h-full flex-col">
@@ -88,7 +88,7 @@ function App() {
         <Route path="/signup">
           <SignUp />
         </Route>
-        <PrivateRoutes isAuthenticated={username}>
+        <PrivateRoutes isAuthenticated={!!token}>
           <Route exact path="/">
             <Home />
           </Route>
