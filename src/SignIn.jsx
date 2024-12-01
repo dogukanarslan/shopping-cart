@@ -17,11 +17,8 @@ export const SignIn = () => {
 
   return (
     <div className="flex h-full items-center justify-center">
-      <div className="w-1/4">
-        <form
-          onSubmit={handleSubmit}
-          className="space-y-2 rounded bg-gray-50 p-10"
-        >
+      <div className="w-1/4 rounded bg-gray-50 p-10">
+        <form onSubmit={handleSubmit} className="space-y-2">
           <h1>Sign In</h1>
           <Input
             label="Username"
