@@ -16,10 +16,10 @@ export const SignUp = () => {
 
   return (
     <div className="flex h-full items-center justify-center">
-      <div className="w-1/4">
+      <div className="w-1/4 rounded bg-gray-50 p-10">
         <form
           onSubmit={handleSubmit}
-          className="space-y-2 rounded bg-gray-50 p-10"
+          className="space-y-2"
         >
           <h1>Sign Up</h1>
           <Input
