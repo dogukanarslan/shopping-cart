@@ -39,6 +39,7 @@ export const AuthContextProvider = (props) => {
       setUsers((prev) => [...prev, { username, password }]);
       setToken(SECRET);
       setUsername(username);
+      history.push('/')
     } else {
       alert('This user already signed up');
     }
