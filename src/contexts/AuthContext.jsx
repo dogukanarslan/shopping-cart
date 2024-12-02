@@ -19,7 +19,7 @@ export const AuthContextProvider = (props) => {
   const signIn = (username, password) => {
     const user = users.find((user) => user.username === username);
 
-    if (user && user.password === parseInt(password)) {
+    if (user && user.password === password) {
       setToken(SECRET);
       setUsername(username);
       history.push('/');
