@@ -12,8 +12,6 @@ export const SignIn = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    console.log('submitted')
-
     signIn(username, password);
   };
 
