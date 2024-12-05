@@ -43,6 +43,9 @@
         }
       ]
     },
+    "ignores": [
+      ".server/*"
+    ],
     "plugins": [
       "react",
       "react-hooks"
