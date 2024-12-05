@@ -3,6 +3,7 @@ import { fileURLToPath } from 'url';
 import express from 'express';
 import dotenv from 'dotenv';
 import { createClient } from '@libsql/client';
+import bcrypt from 'bcryptjs';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const path = __dirname + '/.env';
@@ -23,15 +24,20 @@ app.use(express.json());
 // Routes
 app.post('/api/register', async (req, res) => {
   const { username, password } = req.body;
+  const hashedPassword = await bcrypt.hash(password, 10);
 
-  await db.execute({
-    sql: 'INSERT INTO users (username, password) VALUES (?, ?)',
-    args: [username, password],
-  });
+  try {
+    await db.execute({
+      sql: 'INSERT INTO users (username, password) VALUES (?, ?)',
+      args: [username, hashedPassword],
+    });
 
-  res.status(201).json({});
+    res.status(201).json({});
+  } catch (e) {
+    console.log(e);
+    res.status(500).send('Internal server error');
+  }
 });
-
 
 app.listen(PORT, () => {
   console.log(`App is running on port ${PORT}`);
