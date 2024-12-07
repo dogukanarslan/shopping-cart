@@ -17,6 +17,18 @@ const db = createClient({
 
 const PORT = process.env.PORT || 3000;
 
+const authenticationMiddleware = (req, res, next) => {
+  const token = req.headers.authorization.split(' ')[1];
+  jwt.verify(token, process.env.JWT_SECRET, (error, token) => {
+    if (error) {
+      res.json({ error: 'Invalid token' });
+    } else {
+      req.username = token.username;
+      next();
+    }
+  });
+};
+
 const app = express();
 
 // Middlewares
@@ -61,9 +73,18 @@ app.post('/api/login', async (req, res) => {
     const token = jwt.sign({ username: user.username }, process.env.JWT_SECRET);
     res.status(200).json({ token });
   } catch (e) {
-    console.log(e)
+    console.log(e);
     res.status(500).json({ error: 'Internal server error' });
   }
+});
+
+app.post('/api/products/create', (req,res) => {
+  
+})
+
+app.get('/api/users', authenticationMiddleware, async (req, res) => {
+  const users = await db.execute('SELECT * FROM users');
+  res.json({ data: users.rows });
 });
 
 app.listen(PORT, () => {
