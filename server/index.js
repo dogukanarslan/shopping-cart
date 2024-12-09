@@ -83,9 +83,42 @@ app.post('/api/login', async (req, res) => {
   }
 });
 
-app.post('/api/products/create', (req,res) => {
-  
-})
+app.get('/api/products', authenticationMiddleware, async (req, res) => {
+  try {
+    const products = await db.execute('SELECT * FROM products');
+    res.status(200).json({ products: products.rows });
+  } catch (e) {
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+app.post('/api/products', async (req, res) => {
+  const { name, price } = req.body;
+
+  try {
+    await db.execute({
+      sql: 'INSERT INTO products (product_name, price) VALUES (?, ?)',
+      args: [name, price],
+    });
+    res.status(201).json({});
+  } catch (e) {
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+app.delete('/api/products/:productId', async (req, res) => {
+  const { productId } = req.params;
+
+  try {
+    await db.execute({
+      sql: 'DELETE FROM products WHERE product_id = ?',
+      args: [productId],
+    });
+    res.status(204).json({});
+  } catch (e) {
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
 
 app.get('/api/users', authenticationMiddleware, async (req, res) => {
   const users = await db.execute('SELECT * FROM users');
