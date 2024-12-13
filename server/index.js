@@ -94,3 +94,5 @@ app.get('/api/users', authenticationMiddleware, async (req, res) => {
 app.listen(PORT, () => {
   console.log(`App is running on port ${PORT}`);
 });
+
+export default app;
