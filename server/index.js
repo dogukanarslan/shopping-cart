@@ -86,11 +86,6 @@ app.post('/api/login', async (req, res) => {
   }
 });
 
-app.get('/api/users', authenticationMiddleware, async (req, res) => {
-  const users = await db.execute('SELECT * FROM users');
-  res.json({ data: users.rows });
-});
-
 app.listen(PORT, () => {
   console.log(`App is running on port ${PORT}`);
 });
