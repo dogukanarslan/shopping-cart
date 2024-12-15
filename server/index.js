@@ -6,6 +6,7 @@ import { createClient } from '@libsql/client';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { productRoutes } from './routes/productRoutes.js';
+import cors from 'cors';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const path = __dirname + '/.env';
@@ -39,6 +40,7 @@ const app = express();
 
 // Middlewares
 app.use(express.json());
+app.use(cors());
 
 // Routes
 app.use('/api/products', productRoutes);
