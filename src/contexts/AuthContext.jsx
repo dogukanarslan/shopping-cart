@@ -16,12 +16,21 @@ export const AuthContextProvider = (props) => {
 
   const history = useHistory();
 
-  const signIn = (username, password) => {
-    const user = users.find((user) => user.username === username);
+  const signIn = async (username, password) => {
+    const res = await (
+      await fetch(`${import.meta.env.VITE_BASE_URL}/api/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
+      })
+    ).json();
 
-    if (user && user.password === password) {
-      setToken(SECRET);
-      setUsername(username);
+    const token = res.token;
+
+    if (token) {
+      setToken(token);
       history.push('/');
     }
   };
@@ -39,7 +48,7 @@ export const AuthContextProvider = (props) => {
       setUsers((prev) => [...prev, { username, password }]);
       setToken(SECRET);
       setUsername(username);
-      history.push('/')
+      history.push('/');
     } else {
       alert('This user already signed up');
     }
