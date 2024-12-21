@@ -10,24 +10,23 @@ export const AuthContextProvider = (props) => {
   const { children } = props;
 
   const [username, setUsername] = useLocalStorage('username', '');
-  const [token, setToken] = useLocalStorage('token', '');
 
   const history = useHistory();
 
   const signIn = async (username, password) => {
-    const data = request('/api/login', {
-      method: 'POST',
-      body: { username, password },
+    const data = request('/api/login', 'POST', {
+      username,
+      password,
     });
 
     if (data.token) {
-      setToken(data.token);
+      localStorage.setItem('token', JSON.stringify(data.token));
       history.push('/');
     }
   };
 
   const signOut = () => {
-    setToken(null);
+    localStorage.removeItem('token');
     setUsername(null);
     history.push('/signin');
   };
@@ -46,13 +45,12 @@ export const AuthContextProvider = (props) => {
     const token = res.token;
 
     if (token) {
-      setToken(token);
       history.push('/');
     }
   };
 
   return (
-    <AuthContext.Provider value={{ signUp, signIn, signOut, username, token }}>
+    <AuthContext.Provider value={{ signUp, signIn, signOut, username }}>
       {children}
     </AuthContext.Provider>
   );
