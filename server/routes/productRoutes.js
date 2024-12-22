@@ -9,9 +9,11 @@ import {
 
 const router = Router();
 
-router.get('/', authenticationMiddleware, readProducts);
-router.post('/', authenticationMiddleware, createProduct);
-router.delete('/:productId', authenticationMiddleware, deleteProduct);
-router.get('/:productId', authenticationMiddleware, showProduct);
+router.use(authenticationMiddleware);
+
+router.get('/', readProducts);
+router.post('/', createProduct);
+router.delete('/:productId', deleteProduct);
+router.get('/:productId', showProduct);
 
 export { router as productRoutes };
