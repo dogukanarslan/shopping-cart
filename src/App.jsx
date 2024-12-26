@@ -40,7 +40,7 @@ const linkItems = [
 
 function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { username, token } = useAuthContext();
+  const { token } = useAuthContext();
 
   return (
     <div className="flex h-full flex-col">
@@ -72,11 +72,6 @@ function App() {
             Sign out
           </Button>
         </NavbarMenu>
-        {username && (
-          <NavbarContent justify="center">
-            <NavbarItem>{username}</NavbarItem>
-          </NavbarContent>
-        )}
         <NavbarContent className="md:hidden" justify="end">
           <NavbarMenuToggle />
         </NavbarContent>
