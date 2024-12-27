@@ -19,7 +19,7 @@ const LinkItems = [
 ];
 
 const Sidebar = () => {
-  const { username, signOut } = useAuthContext();
+  const { token, username, signOut } = useAuthContext();
   return (
     <div className="fixed hidden h-full w-56 border-r-1 p-6 md:flex md:flex-col md:justify-between">
       <div>
@@ -40,7 +40,7 @@ const Sidebar = () => {
         </Listbox>
       </div>
       <div>
-        {!username ? (
+        {!token ? (
           <div className="flex flex-col gap-2">
             <Button as={Link} href="/signin">
               Sign in
