@@ -22,14 +22,14 @@ export const AuthContextProvider = (props) => {
 
     if (data.token) {
       setToken(data.token);
-      setUsername(data.username);
+      setUsername(data.username || '');
       history.push('/');
     }
   };
 
   const signOut = () => {
     setToken(null);
-    setUsername(null);
+    setUsername('');
     history.push('/signin');
   };
 
