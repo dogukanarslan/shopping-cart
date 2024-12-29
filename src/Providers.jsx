@@ -1,16 +1,16 @@
 import { NextUIProvider } from '@nextui-org/react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { ReceiptsContextProvider } from './contexts/ReceiptsContext';
 import { ProductsContextProvider } from './contexts/ProductsContext';
 import { AuthContextProvider } from './contexts/AuthContext';
 
 export function Providers({ children }) {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   return (
     <NextUIProvider
-      navigate={history.push}
+      navigate={navigate}
       validationBehavior="native"
       className="h-full"
     >

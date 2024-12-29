@@ -1,4 +1,4 @@
-import { Button, Link, Listbox, ListboxItem } from '@nextui-org/react';
+import { Button, Link } from '@nextui-org/react';
 import {
   FiDisc,
   FiFile,
@@ -29,15 +29,15 @@ const Sidebar = () => {
             <p className="font-bold uppercase">Receipts</p>
           </div>
         </Link>
-        <Listbox variant="faded" aria-label="Sidebar" label="hi" title="hi">
+        <div>
           {LinkItems.map((link) => (
-            <ListboxItem key={link.name} href={link.url} textValue="hi">
+            <Link key={link.name} href={link.url} className="text-inherit">
               <div className="flex items-center">
                 <div className="mr-2">{link.icon}</div> {link.name}
               </div>
-            </ListboxItem>
+            </Link>
           ))}
-        </Listbox>
+        </div>
       </div>
       <div>
         {!token ? (
@@ -52,7 +52,7 @@ const Sidebar = () => {
         ) : (
           <>
             <h4 className="my-2 text-center">{username}</h4>
-            <Button fullWidth startContent={<FiLogOut />} onClick={signOut}>
+            <Button fullWidth startContent={<FiLogOut />} onPress={signOut}>
               Sign out
             </Button>
           </>

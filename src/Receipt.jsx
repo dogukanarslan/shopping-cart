@@ -1,4 +1,4 @@
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import {
   Button,
   Card,
@@ -10,7 +10,7 @@ import {
 import { formatDate } from './utils';
 
 const Receipt = ({ receipt }) => {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   return (
     <Card>
@@ -35,7 +35,7 @@ const Receipt = ({ receipt }) => {
         </div>
       </CardBody>
       <CardFooter>
-        <Button onClick={() => history.push(`/receipts/${receipt.id}`)}>
+        <Button onPress={() => navigate(`/receipts/${receipt.id}`)}>
           View
         </Button>
       </CardFooter>

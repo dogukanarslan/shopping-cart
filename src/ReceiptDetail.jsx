@@ -48,10 +48,10 @@ export const ReceiptDetail = () => {
           }, 0)}
         </div>
       </div>
-      <Button color="danger" variant="flat" onClick={onDeleteOpen}>
+      <Button color="danger" variant="flat" onPress={onDeleteOpen}>
         Delete
       </Button>
-      <Button className="ml-2" variant="flat" onClick={onOpen}>
+      <Button className="ml-2" variant="flat" onPress={onOpen}>
         Edit
       </Button>
       <EditReceiptModal

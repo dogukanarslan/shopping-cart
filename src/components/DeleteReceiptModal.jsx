@@ -6,7 +6,7 @@ import {
   ModalFooter,
   ModalHeader,
 } from '@nextui-org/react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { useReceiptsContext } from '../contexts/ReceiptsContext';
 
@@ -15,11 +15,11 @@ const DeleteReceiptModal = (props) => {
 
   const { setReceipts } = useReceiptsContext();
 
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const handleDelete = () => {
     setReceipts((prev) => prev.filter((p) => p.id !== receipt.id));
-    history.push('/receipts');
+    navigate('/receipts');
   };
 
   return (

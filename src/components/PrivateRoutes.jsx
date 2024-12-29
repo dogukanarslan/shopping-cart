@@ -1,18 +1,18 @@
-import { Redirect, Switch } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
 import Sidebar from './Sidebar';
 
 export const PrivateRoutes = (props) => {
-  const { children, isAuthenticated } = props;
+  const { isAuthenticated } = props;
 
   if (!isAuthenticated) {
-    return <Redirect to={{ pathname: '/signin' }} />;
+    return <Navigate to={{ pathname: '/signin' }} />;
   }
 
   return (
     <>
       <Sidebar />
       <div className="ml-56 p-4">
-        <Switch>{children}</Switch>
+        <Outlet />
       </div>
     </>
   );

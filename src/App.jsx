@@ -1,4 +1,4 @@
-import { Link, Route } from 'react-router-dom';
+import { Link, Route, Routes } from 'react-router-dom';
 import Home from './Home';
 import { Receipts } from './Receipts';
 import { ReceiptDetail } from './ReceiptDetail';
@@ -76,32 +76,18 @@ function App() {
         </NavbarContent>
       </Navbar>
       <div className="h-full">
-        <Route path="/signin">
-          <SignIn />
-        </Route>
-        <Route path="/signup">
-          <SignUp />
-        </Route>
-        <PrivateRoutes isAuthenticated={!!token}>
-          <Route exact path="/">
-            <Home />
+        <Routes>
+          <Route path="/signin" element={<SignIn />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route element={<PrivateRoutes isAuthenticated={!!token} />}>
+            <Route exact path="/" element={<Home />} />
+            <Route path="/receipts/create" element={<CreateReceipt />} />
+            <Route path="/receipts/:id" element={<ReceiptDetail />} />
+            <Route path="/receipts" element={<Receipts />} />
+            <Route path="/products/create" element={<CreateProduct />} />
+            <Route path="/products" element={<Products />} />
           </Route>
-          <Route path="/receipts/create">
-            <CreateReceipt />
-          </Route>
-          <Route path="/receipts/:id">
-            <ReceiptDetail />
-          </Route>
-          <Route path="/receipts">
-            <Receipts />
-          </Route>
-          <Route path="/products/create">
-            <CreateProduct />
-          </Route>
-          <Route path="/products">
-            <Products />
-          </Route>
-        </PrivateRoutes>
+        </Routes>
       </div>
     </div>
   );
