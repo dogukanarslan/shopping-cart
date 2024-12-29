@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button, Card, CardBody, Input } from '@nextui-org/react';
 
 import { useReceiptsContext } from './contexts/ReceiptsContext';
@@ -12,7 +12,7 @@ const CreateReceipt = () => {
   const { receipts, setReceipts } = useReceiptsContext();
   const { products } = useProductsContext();
 
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const addItem = (productId, name, price, quantity) => {
     setItems((prev) => [
@@ -58,7 +58,7 @@ const CreateReceipt = () => {
       },
     ]);
 
-    history.push('/receipts');
+    navigate('/receipts');
   };
 
   return (
@@ -80,7 +80,7 @@ const CreateReceipt = () => {
                 type="button"
                 size="sm"
                 radius="full"
-                onClick={() => handleProductClick(product)}
+                onPress={() => handleProductClick(product)}
               >
                 {product.name}
               </Button>

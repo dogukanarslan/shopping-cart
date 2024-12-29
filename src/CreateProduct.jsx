@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { Button, Input } from '@nextui-org/react';
 import { useProductsContext } from './contexts/ProductsContext';
@@ -10,7 +10,7 @@ const CreateProduct = () => {
 
   const { setProducts } = useProductsContext();
 
-  const history = useHistory('');
+  const navigate = useNavigate();
 
   const createProduct = async (e) => {
     e.preventDefault();
@@ -25,7 +25,7 @@ const CreateProduct = () => {
       },
     ]);
 
-    history.push('/products');
+    navigate('/products');
   };
 
   return (

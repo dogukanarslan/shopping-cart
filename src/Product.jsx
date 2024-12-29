@@ -37,10 +37,10 @@ const Product = ({ product }) => {
           </div>
         </CardBody>
         <CardFooter className="gap-2">
-          <Button color="danger" variant="flat" onClick={handleDelete}>
+          <Button color="danger" variant="flat" onPress={handleDelete}>
             Delete
           </Button>
-          <Button onClick={onOpen}>Edit</Button>
+          <Button onPress={onOpen}>Edit</Button>
         </CardFooter>
       </Card>
       <EditProductModal

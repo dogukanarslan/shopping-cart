@@ -1,5 +1,5 @@
 import { createContext, useContext } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { useLocalStorage } from '../hooks/useLocalStorage';
 import { request } from '../request';
@@ -12,7 +12,7 @@ export const AuthContextProvider = (props) => {
   const [username, setUsername] = useLocalStorage('username', '');
   const [token, setToken] = useLocalStorage('token', '');
 
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const signIn = async (username, password) => {
     const data = await request('/api/login', 'POST', {
@@ -23,14 +23,14 @@ export const AuthContextProvider = (props) => {
     if (data.token) {
       setToken(data.token);
       setUsername(data.username || '');
-      history.push('/');
+      navigate('/');
     }
   };
 
   const signOut = () => {
     setToken(null);
     setUsername('');
-    history.push('/signin');
+    navigate('/signin');
   };
 
   const signUp = async (username, password) => {
