@@ -8,28 +8,23 @@ const CreateProduct = () => {
   const [name, setName] = useState('');
   const [price, setPrice] = useState('');
 
-  const { setProducts } = useProductsContext();
+  const { createProduct } = useProductsContext();
 
   const navigate = useNavigate();
 
-  const createProduct = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
 
-    setProducts((prevState) => [
-      ...prevState,
-      {
-        id: Math.floor(Math.random() * 1000),
-        name,
-        price,
-        created_at: new Date(),
-      },
-    ]);
+    createProduct({
+      name,
+      price,
+    });
 
     navigate('/products');
   };
 
   return (
-    <form onSubmit={createProduct} className="space-y-2">
+    <form onSubmit={handleSubmit} className="space-y-2">
       <Input
         label="Name"
         value={name}

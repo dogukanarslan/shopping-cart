@@ -1,9 +1,15 @@
 import { Link } from 'react-router-dom';
 import { useProductsContext } from './contexts/ProductsContext';
 import Product from './Product';
+import { useEffect } from 'react';
 
 export const Products = () => {
-  const { products } = useProductsContext();
+  const { products, getProducts } = useProductsContext();
+
+  useEffect(() => {
+    getProducts();
+  }, [getProducts]);
+
   if (products.length === 0) {
     return (
       <div>

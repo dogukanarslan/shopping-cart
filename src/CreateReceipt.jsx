@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button, Card, CardBody, Input } from '@nextui-org/react';
 
@@ -10,9 +10,13 @@ const CreateReceipt = () => {
   const [items, setItems] = useState([]);
 
   const { receipts, setReceipts } = useReceiptsContext();
-  const { products } = useProductsContext();
+  const { products, getProducts } = useProductsContext();
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    getProducts();
+  }, [getProducts]);
 
   const addItem = (productId, name, price, quantity) => {
     setItems((prev) => [

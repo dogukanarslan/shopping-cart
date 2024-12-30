@@ -5,7 +5,7 @@ export const createProduct = async (req, res) => {
 
   try {
     await db.execute({
-      sql: 'INSERT INTO products (product_name, price) VALUES (?, ?)',
+      sql: 'INSERT INTO products (name, price) VALUES (?, ?)',
       args: [name, price],
     });
     res.status(201).json({});
