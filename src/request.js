@@ -1,9 +1,11 @@
+import { getStorageValue } from './hooks/useLocalStorage';
+
 export const request = async (url, method = 'GET', body, headers) => {
   const config = {
     method,
     headers: { 'Content-Type': 'application/json', ...headers },
   };
-  const token = localStorage.getItem('token') || '';
+  const token = getStorageValue('token', '');
 
   if (token) {
     config.headers.authorization = `Bearer ${token}`;

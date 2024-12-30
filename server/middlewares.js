@@ -9,7 +9,7 @@ export const authenticationMiddleware = (req, res, next) => {
 
   jwt.verify(token, process.env.JWT_SECRET, (error, token) => {
     if (error) {
-      res.json({ error: 'Invalid token' });
+      res.status(500).json({ error: 'Invalid token' });
     } else {
       req.username = token.username;
       next();
