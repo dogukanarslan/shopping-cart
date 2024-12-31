@@ -4,6 +4,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import { createClient } from '@libsql/client';
 import { productRoutes } from './routes/productRoutes.js';
+import { receiptRoutes } from './routes/receiptRoutes.js';
 import { authRoutes } from './routes/authRoutes.js';
 import cors from 'cors';
 
@@ -27,6 +28,7 @@ app.use(cors());
 // Routes
 app.use('/api', authRoutes);
 app.use('/api/products', productRoutes);
+app.use('/api/receipts', receiptRoutes);
 
 app.listen(PORT, () => {
   console.log(`App is running on port ${PORT}`);
