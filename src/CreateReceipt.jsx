@@ -9,7 +9,7 @@ const CreateReceipt = () => {
   const [name, setName] = useState('');
   const [items, setItems] = useState([]);
 
-  const { receipts, setReceipts } = useReceiptsContext();
+  const { createReceipt } = useReceiptsContext();
   const { products, getProducts } = useProductsContext();
 
   const navigate = useNavigate();
@@ -49,25 +49,16 @@ const CreateReceipt = () => {
     }
   };
 
-  const createReceipt = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    setReceipts([
-      ...receipts,
-      {
-        id: Math.floor(Math.random() * 1000),
-        name,
-        items,
-        created_at: new Date(),
-      },
-    ]);
-
+    createReceipt({ name });
     navigate('/receipts');
   };
 
   return (
     <>
-      <form onSubmit={createReceipt}>
+      <form onSubmit={handleSubmit}>
         <Input
           label="Receipt  Name"
           value={name}

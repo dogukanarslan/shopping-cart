@@ -14,8 +14,14 @@ export const ReceiptsContextProvider = (props) => {
     setReceipts(data.receipts);
   }, []);
 
+  const createReceipt = useCallback(async (body) => {
+    await request('/api/receipts', 'POST', body);
+  }, []);
+
   return (
-    <ReceiptsContext.Provider value={{ receipts, setReceipts, getReceipts }}>
+    <ReceiptsContext.Provider
+      value={{ receipts, setReceipts, getReceipts, createReceipt }}
+    >
       {children}
     </ReceiptsContext.Provider>
   );
