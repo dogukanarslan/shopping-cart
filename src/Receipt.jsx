@@ -23,7 +23,7 @@ const Receipt = ({ receipt }) => {
           <h2 className="text-xs">Total</h2>
           <p>
             $
-            {receipt.items.reduce(
+            {receipt.items?.reduce(
               (total, item) => (total += item.price * item.quantity),
               0
             )}
