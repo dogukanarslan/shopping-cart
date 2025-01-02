@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Card, CardBody } from '@nextui-org/react';
 import { FiFile, FiTv } from 'react-icons/fi';
 
@@ -5,8 +6,13 @@ import { useReceiptsContext } from './contexts/ReceiptsContext';
 import { useProductsContext } from './contexts/ProductsContext';
 
 const Home = () => {
-  const { receipts } = useReceiptsContext();
-  const { products } = useProductsContext();
+  const { receipts, getReceipts } = useReceiptsContext();
+  const { products, getProducts } = useProductsContext();
+
+  useEffect(() => {
+    getReceipts();
+    getProducts();
+  }, [getReceipts, getProducts]);
 
   return (
     <div className="space-y-2">
