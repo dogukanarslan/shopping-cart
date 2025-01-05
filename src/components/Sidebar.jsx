@@ -37,7 +37,7 @@ const Sidebar = () => {
             <Link
               key={link.name}
               href={link.url}
-              onClick={() => setSelectedTab(link.name)}
+              onPress={() => setSelectedTab(link.name)}
               className={`w-full rounded px-4 py-2 text-inherit ${link.name === selectedTab ? 'bg-black text-white' : ''}`}
             >
               <div className="flex items-center">
