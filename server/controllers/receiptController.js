@@ -1,13 +1,22 @@
 import { db } from '../index.js';
 
 export const createReceipt = async (req, res) => {
-  const { name } = req.body;
+  const { name, items } = req.body;
 
   try {
-    await db.execute({
+    const receipt = await db.execute({
       sql: 'INSERT INTO receipts (name) VALUES (?)',
       args: [name],
     });
+
+    const receiptId = receipt.lastInsertRowid;
+
+    for (let item of items) {
+      await db.execute({
+        sql: 'INSERT INTO receipt_items (name, price, quantity, receipt_id) VALUES (?, ?, ?, ?)',
+        args: [item.name, item.price, item.quantity, receiptId],
+      });
+    }
     res.status(201).json({});
   } catch (e) {
     res.status(500).json({ error: 'Internal server error' });
@@ -42,10 +51,15 @@ export const showReceipt = async (req, res) => {
 
   try {
     const receipts = await db.execute({
-      sql: 'SELECT * FROM receipts WHERE id = ?',
+      sql: 'SELECT * FROM receipts WHERE receipts.id = ?',
       args: [receiptId],
     });
-    res.status(200).json({ receipts: receipts.rows[0] });
+    const receiptItems = await db.execute({
+      sql: 'SELECT id, name, quantity, price FROM receipt_items WHERE receipt_id = ?',
+      args: [receiptId],
+    });
+
+    res.status(200).json({ ...receipts.rows[0], items: receiptItems.rows });
   } catch (e) {
     res.status(500).json({ error: 'Internal server error' });
   }
