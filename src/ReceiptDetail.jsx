@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { Button, Divider, useDisclosure } from '@nextui-org/react';
 
@@ -9,7 +10,7 @@ import DeleteReceiptModal from './components/DeleteReceiptModal';
 export const ReceiptDetail = () => {
   const { id } = useParams();
 
-  const { receipts } = useReceiptsContext();
+  const { receiptDetail, showReceipt } = useReceiptsContext();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const {
     isOpen: isDeleteOpen,
@@ -17,17 +18,23 @@ export const ReceiptDetail = () => {
     onOpenChange: onDeleteOpenChange,
   } = useDisclosure();
 
-  const receipt = receipts?.find((receipt) => receipt.id === parseInt(id));
+  useEffect(() => {
+    showReceipt(id);
+  }, [showReceipt, id]);
+
+  if (!receiptDetail) {
+    return;
+  }
 
   return (
     <div>
-      <h1 className="text-2xl font-semibold">{receipt.name}</h1>
-      <div className="my-2 text-sm">{formatDate(receipt.created_at)}</div>
+      <h1 className="text-2xl font-semibold">{receiptDetail.name}</h1>
+      <div className="my-2 text-sm">{formatDate(receiptDetail.created_at)}</div>
 
       <div>
         <h2 className="font-medium text-neutral-500">Receipt Items</h2>
         <Divider className="mt-4" />
-        {receipt.items?.map((item) => (
+        {receiptDetail.items?.map((item) => (
           <div
             key={item.id}
             className="border-b border-divider py-4 text-small"
@@ -43,7 +50,7 @@ export const ReceiptDetail = () => {
         <h2 className="text-neutral-500">Total</h2>
         <div>
           $
-          {receipt.items?.reduce((total, item) => {
+          {receiptDetail.items?.reduce((total, item) => {
             return total + item.price * item.quantity;
           }, 0)}
         </div>
@@ -55,12 +62,12 @@ export const ReceiptDetail = () => {
         Edit
       </Button>
       <EditReceiptModal
-        receipt={receipt}
+        receipt={receiptDetail}
         isOpen={isOpen}
         onOpenChange={onOpenChange}
       />
       <DeleteReceiptModal
-        receipt={receipt}
+        receipt={receiptDetail}
         isOpen={isDeleteOpen}
         onOpenChange={onDeleteOpenChange}
       />
