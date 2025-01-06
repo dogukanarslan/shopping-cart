@@ -14,6 +14,10 @@ const Home = () => {
     getProducts();
   }, [getReceipts, getProducts]);
 
+  if (!receipts || !products) {
+    return;
+  }
+
   return (
     <div className="space-y-2">
       <Card classNames={{ body: 'flex-row items-center' }}>
