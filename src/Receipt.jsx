@@ -21,13 +21,7 @@ const Receipt = ({ receipt }) => {
       <CardBody>
         <div>
           <h2 className="text-xs">Total</h2>
-          <p>
-            $
-            {receipt.items?.reduce(
-              (total, item) => (total += item.price * item.quantity),
-              0
-            )}
-          </p>
+          <p>${receipt.total}</p>
         </div>
         <div>
           <h1 className="text-sm">Created At</h1>

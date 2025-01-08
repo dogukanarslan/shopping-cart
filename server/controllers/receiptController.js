@@ -26,6 +26,16 @@ export const createReceipt = async (req, res) => {
 export const readReceipts = async (req, res) => {
   try {
     const receipts = await db.execute('SELECT * FROM receipts');
+
+    for (let row of receipts.rows) {
+      const res = await db.execute({
+        sql: 'SELECT SUM(price * quantity) as total FROM receipt_items WHERE receipt_id = ?',
+        args: [row.id],
+      });
+
+      row.total = res.rows[0].total;
+    }
+
     res.status(200).json({ receipts: receipts.rows });
   } catch (e) {
     res.status(500).json({ error: 'Internal server error' });
@@ -54,6 +64,16 @@ export const showReceipt = async (req, res) => {
       sql: 'SELECT * FROM receipts WHERE receipts.id = ?',
       args: [receiptId],
     });
+
+    for (let row of receipts.rows) {
+      const res = await db.execute({
+        sql: 'SELECT SUM(price * quantity) as total FROM receipt_items WHERE receipt_id = ?',
+        args: [row.id],
+      });
+
+      row.total = res.rows[0].total;
+    }
+
     const receiptItems = await db.execute({
       sql: 'SELECT id, name, quantity, price FROM receipt_items WHERE receipt_id = ?',
       args: [receiptId],
