@@ -48,12 +48,7 @@ export const ReceiptDetail = () => {
       </div>
       <div className="my-5 flex items-center gap-x-4 text-sm font-semibold">
         <h2 className="text-neutral-500">Total</h2>
-        <div>
-          $
-          {receiptDetail.items?.reduce((total, item) => {
-            return total + item.price * item.quantity;
-          }, 0)}
-        </div>
+        <div>${receiptDetail.total}</div>
       </div>
       <Button color="danger" variant="flat" onPress={onDeleteOpen}>
         Delete
