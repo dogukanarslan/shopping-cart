@@ -15,7 +15,7 @@ export const request = async (url, method = 'GET', body, headers) => {
     config.body = JSON.stringify(body);
   }
 
-  return await (
-    await fetch(`${import.meta.env.VITE_BASE_URL}${url}`, config)
-  ).json();
+  const response = await fetch(`${import.meta.env.VITE_BASE_URL}${url}`, config);
+
+  return response.json();
 };
