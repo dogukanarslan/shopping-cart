@@ -1,0 +1,28 @@
+CREATE TABLE users IF NOT EXISTS (
+    id INTEGER PRIMARY KEY,
+    username TEXT NOT NULL UNIQUE,
+    password TEXT NOT NULL,
+    created_at TEXT DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS receipts (
+    id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL,
+    created_at TEXT DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS receipt_items (
+    id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL,
+    price INTEGER NOT NULL,
+    quantity INTEGER NOT NULL,
+    receipt_id INTEGER NOT NULL,
+    FOREIGN KEY (receipt_id) REFERENCES receipts (id)
+);
+
+CREATE TABLE IF NOT EXISTS products (
+    id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL,
+    price INTEGER NOT NULL,
+    created_at TEXT DEFAULT CURRENT_TIMESTAMP
+);
